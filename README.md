@@ -10,5 +10,3 @@ Makes use of:
 - SVG
 
 # Rules of 9x9 Tic Tac Toe
-
-Hello wassup
