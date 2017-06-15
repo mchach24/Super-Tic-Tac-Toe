@@ -1,0 +1,16 @@
+body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+#gameContainer {
+    height: 90vh; /* 90% of parent's height */
+    width: 90vh; /* sets width to the same as height, so a 1:1 aspect ratio */
+    margin-bottom: 20px;
+}
+
+#gameBoard {
+    background-color: #AAA;
+    height: inherit;
+    width: inherit;
+}
