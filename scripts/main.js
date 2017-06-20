@@ -14,4 +14,6 @@ requirejs.config({
 });
 
 requirejs(['jquery', 'bootstrap'], function($) {
+    
+    
 });
