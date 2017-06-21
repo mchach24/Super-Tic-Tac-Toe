@@ -5,10 +5,10 @@ This file is intended for documentation of scripts that go along with this repo.
 ## File Map
 
 - scripts/
-	* main.js
+	* [main.js](https://github.com/mchach24/Super-Tic-Tac-Toe/blob/master/scripts/scripts.md#mainjs)
 	* game/
-		* mainGame.js
-		* subGame.js
+		* [mainGame.js](https://github.com/mchach24/Super-Tic-Tac-Toe/blob/master/scripts/scripts.md#gamemaingamejs)
+		* [subGame.js](https://github.com/mchach24/Super-Tic-Tac-Toe/blob/master/scripts/scripts.md#gamesubgamejs)
 
 ## Documentation of Individual Script Files
 
