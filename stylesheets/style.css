@@ -3,15 +3,6 @@ body {
     overflow: hidden;
 }
 
-/* mobile CSS modifications; applied when width of window is less than height of window */
-@media only screen and (max-width: 100vh) /* when width is less than height */ {
-    
-    #gameContainer {
-        height: 90vw;
-        width: 90vw;
-    }
-}
-
 #gameContainer {
     height: 90vh; /* 90% of parent's height */
     width: 90vh; /* sets width to the same as height, so a 1:1 aspect ratio */
@@ -20,6 +11,18 @@ body {
 
 #gameSVG {
     background-color: #AAA;
-    height: inherit;
-    width: inherit;
+    height: 90vh;
+    width: 90vh;
+	/*margin-left: auto;
+	margin-right: auto;
+	/*display: flex;
+	justify-content: center;
+	align-items: flex-end;*/
+	
+	/* centering */
+	position: absolute;
+  	left: 50%;
+	transform: translateX(-50%);
+  	-webkit-transform: translateX(-50%);
+	
 }

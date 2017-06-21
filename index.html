@@ -11,6 +11,7 @@
         
         <!-- project-specific CSS -->
         <link href="stylesheets/style.css" rel="stylesheet"/>
+		<link href="stylesheets/mobile_style.css" rel="stylesheet"/>
         
         <script data-main="scripts/main" src="lib/require.js_2.3.3/require.js"></script>
     </head>
@@ -35,9 +36,9 @@
         </nav>
         
         <div class="container" id="gameContainer">
-            <svg id="gameSVG">
-        
-        
+            <svg id="gameSVG" viewbox="0 0 1200 1200" preserveAspectRatio="xMidYMid meet">
+        		<rect x="0" y="0" width="400" height="400" style="fill:#CCC"></rect>
+				<line x1="400" y1="0" x2="400" y2="400" style="stroke: #000; stroke-width: 2"></line>
             </svg>
         </div>
     </body>

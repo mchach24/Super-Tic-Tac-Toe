@@ -16,6 +16,4 @@ requirejs.config({
 
 requirejs(['jquery', 'snapsvg', 'bootstrap'], function($, Snap) {
     var gameSVG = Snap('#gameSVG');
-	
-	var myCircle = gameSVG.circle(200, 200, 150);
 });
