@@ -1,8 +1,8 @@
 # Scripts
 
-### This file is intended for documentation of scripts that go along with this repo. Explanations of purposes and uses of specific script files, map of files, and, while this is in development, future script files.
+This file is intended for documentation of scripts that go along with this repo. Explanations of purposes and uses of specific script files, map of files, and, while this is in development, future script files.
 
-#### File Map
+## File Map
 
 - scripts/
 	* main.js
@@ -10,13 +10,13 @@
 		* mainGame.js
 		* subGame.js
 
-#### Documentation of Individual Script Files
+## Documentation of Individual Script Files
 
-###### main.js
+#### main.js
 
 The data-main entry point for require.js. Not sure what this will do yet.
 
-###### game/mainGame.js
+#### game/mainGame.js
 
 - Composed of an immediately-invoked function expression, which keeps track of, at the least, the following:
 	- board Object: keeps track of 9 subGame instances
@@ -25,7 +25,7 @@ The data-main entry point for require.js. Not sure what this will do yet.
 	- render method: updates gameSVG
 	- playMove method: takes TBD parameters (probably grid position and sub-grid position, possibly others) and plays a move on the board based on them. Another script file(s) will have to be responsible for listening for a click on the svg, discerning the position of the click, then calling this method.
 	
-###### game/subGame.js
+#### game/subGame.js
 
 - composed of a subGame closure function. Should contain:
 	- position: variable to store the position in the grid of subGames (either as a number 0-8 or 1-9, or row[x]column[y])
