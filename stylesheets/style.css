@@ -10,19 +10,31 @@ body {
 }
 
 #gameSVG {
-    background-color: #AAA;
     height: 90vh;
     width: 90vh;
-	/*margin-left: auto;
-	margin-right: auto;
-	/*display: flex;
-	justify-content: center;
-	align-items: flex-end;*/
 	
 	/* centering */
 	position: absolute;
   	left: 50%;
 	transform: translateX(-50%);
-  	-webkit-transform: translateX(-50%);
-	
+  	-webkit-transform: translateX(-50%);	
+}
+
+#gameSVG .gameSVG_subGame-square {
+	fill: #CCC;
+}
+
+#gameSVG .gameSVG_inner-border {
+	stroke: #000;
+	stroke-width: 6;
+}
+
+#gameSVG .gameSVG_outer-border {
+	stroke: #000;
+	stroke-width: 15;
+}
+
+#gameSVG .gameSVG_subGame_inner-border {
+	stroke: #000;
+	stroke-width: 3;
 }
