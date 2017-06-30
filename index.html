@@ -36,57 +36,7 @@
         </nav>
         
         <div class="container" id="gameContainer">
-            <svg id="gameSVG" viewbox="0 0 1800 1800" preserveAspectRatio="xMidYMid meet">
-        		<defs>
-					<!-- this is analogous to a class which is used to create 9 instances: one for each subGame -->
-					<symbol id="subGame-symbol">
-						<!-- row 1 of subGame -->
-						<rect class="gameSVG_subGame-square" x="0"   y="0" width="200" height="200"/>
-        				<rect class="gameSVG_subGame-square" x="200" y="0" width="200" height="200"/>
-        				<rect class="gameSVG_subGame-square" x="400" y="0" width="200" height="200"/>
-						
-						<!-- row 2 of subGame -->
-						<rect class="gameSVG_subGame-square" x="0"   y="200" width="200" height="200"/>
-        				<rect class="gameSVG_subGame-square" x="200" y="200" width="200" height="200"/>
-        				<rect class="gameSVG_subGame-square" x="400" y="200" width="200" height="200"/>
-						
-						<!-- row 3 of subGame -->
-						<rect class="gameSVG_subGame-square" x="0"   y="400" width="200" height="200"/>
-        				<rect class="gameSVG_subGame-square" x="200" y="400" width="200" height="200"/>
-        				<rect class="gameSVG_subGame-square" x="400" y="400" width="200" height="200"/>
-						
-						<!-- inner borders of subGame -->
-						<line class="gameSVG_subGame_inner-border" x1="200" y1="0" x2="200" y2="600"/>
-						<line class="gameSVG_subGame_inner-border" x1="400" y1="0" x2="400" y2="600"/>
-						<line class="gameSVG_subGame_inner-border" x1="0" y1="200" x2="600" y2="200"/>
-						<line class="gameSVG_subGame_inner-border" x1="0" y1="400" x2="600" y2="400"/>
-					</symbol>
-				</defs>
-				
-				<!-- creates subGames based on the symbol in the <refs> tag -->
-				<use xlink:href="#subGame-symbol" x="0" y="0"/>
-				<use xlink:href="#subGame-symbol" x="600" y="0"/>
-				<use xlink:href="#subGame-symbol" x="1200" y="0"/>
-				
-				<use xlink:href="#subGame-symbol" x="0" y="600"/>
-				<use xlink:href="#subGame-symbol" x="600" y="600"/>
-				<use xlink:href="#subGame-symbol" x="1200" y="600"/>
-				
-				<use xlink:href="#subGame-symbol" x="0" y="1200"/>
-				<use xlink:href="#subGame-symbol" x="600" y="1200"/>
-				<use xlink:href="#subGame-symbol" x="1200" y="1200"/>
-				
-				<!-- borders between subGames -->
-				<line class="gameSVG_inner-border" x1="600" y1="0" x2="600" y2="1800"/>
-				<line class="gameSVG_inner-border" x1="1200" y1="0" x2="1200" y2="1800"/>
-				<line class="gameSVG_inner-border" x1="0" y1="600" x2="1800" y2="600"/>
-				<line class="gameSVG_inner-border" x1="0" y1="1200" x2="1800" y2="1200"/>
-				
-				<!-- outside boarders of the whole game -->
-				<line class="gameSVG_outer-border" x1="0" y1="0" x2="1800" y2="0"/>
-				<line class="gameSVG_outer-border" x1="1800" y1="0" x2="1800" y2="1800"/>
-				<line class="gameSVG_outer-border" x1="1800" y1="1800" x2="0" y2="1800"/>
-				<line class="gameSVG_outer-border" x1="0" y1="1800" x2="0" y2="0"/>
+            <svg id="gameSVG" viewBox="0 0 1800 1800" preserveAspectRatio="xMidYMid meet">
 				
             </svg>
         </div>

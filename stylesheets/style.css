@@ -17,21 +17,27 @@ body {
 	position: absolute;
   	left: 50%;
 	transform: translateX(-50%);
-  	-webkit-transform: translateX(-50%);	
+  	-webkit-transform: translateX(-50%);
+	
+	border-radius: 5px;
 }
 
 #gameSVG .gameSVG_subGame-square {
 	fill: #CCC;
 }
 
+.gameSVG_subGame:hover .gameSVG_subGame-square {
+	fill: #000;
+}
+
 #gameSVG .gameSVG_inner-border {
 	stroke: #000;
-	stroke-width: 6;
+	stroke-width: 9;
 }
 
 #gameSVG .gameSVG_outer-border {
 	stroke: #000;
-	stroke-width: 15;
+	stroke-width: 25;
 }
 
 #gameSVG .gameSVG_subGame_inner-border {
