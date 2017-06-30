@@ -4,7 +4,7 @@ requirejs.config({
     baseUrl: 'scripts/',
     shim: {
         'bootstrap': {
-            deps: ['jquery'] 
+            deps: ['jQuery'] 
         }
     },
     paths: {
