@@ -28,4 +28,4 @@
 
 ~1. Add underscore.js to lib and set that up.~
 
-~2. Learn more about requirejs: `define` function, ~
+~2. Learn more about requirejs: `define` function,~
