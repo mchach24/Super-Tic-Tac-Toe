@@ -1,5 +1,8 @@
+html {
+    margin: 0 auto;
+}
+
 body {
-    height: 100vh;
     overflow: hidden;
 }
 
@@ -43,4 +46,12 @@ body {
 #gameSVG .gameSVG_subGame_inner-border {
 	stroke: #000;
 	stroke-width: 3;
+}
+
+@media only screen and (max-width: 95vh) /* when width is roughly less than height */ {
+    
+    #gameSVG {
+        height: 94vw;
+        width: 94vw;
+    }
 }

@@ -1,8 +1,0 @@
-/* mobile CSS modifications; applied when width of window is less than height of window */
-@media only screen and (max-width: 95vh) /* when width is less than height */ {
-    
-    #gameSVG {
-        height: 94vw;
-        width: 94vw;
-    }
-}
