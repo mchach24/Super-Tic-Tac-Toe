@@ -16,6 +16,8 @@ define(['underscore', 'snapsvg', 'render'], function (_, Snap, render) {
     
     function renderGame() {
         renderComponent('borders');
+        
+        // do other stuff if needed
     }
     
     function renderComponent(component, callerArgs) {

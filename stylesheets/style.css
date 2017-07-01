@@ -16,11 +16,12 @@ body {
     height: 90vh;
     width: 90vh;
 	
-	/* centering */
+	/* centering horizontally and vertically */
 	position: absolute;
   	left: 50%;
-	transform: translateX(-50%);
-  	-webkit-transform: translateX(-50%);
+    top: 50%;
+	transform: translate(-50%, -47%);
+  	-webkit-transform: translate(-50%, -47%);
 	
 	border-radius: 5px;
 }
