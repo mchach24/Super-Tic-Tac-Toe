@@ -32,6 +32,6 @@ define(['underscore', 'snapsvg', 'render'], function (_, Snap, render) {
     
     return {
         renderGame: renderGame,
-        renderComponent: renderComponent
+        renderSubGame: _(renderComponent).partial('subGame') // binds 'subGame' as argument
     }
 });

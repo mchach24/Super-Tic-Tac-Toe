@@ -20,6 +20,7 @@ requirejs.config({
             // view/
         'view': "view/view",
         'render': "view/render"
+            // controller/
     }
 });
 

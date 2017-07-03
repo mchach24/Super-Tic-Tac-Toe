@@ -27,8 +27,6 @@ define(['underscore', 'SubGame', 'view'], function (_, SubGame, view) {
             return getPropertyOfSubgame(subGame.subGameInfo.position, prop);
         });
         
-        console.log(subGamesWithProp);
-        
         return subGamesWithProp;
     }
     

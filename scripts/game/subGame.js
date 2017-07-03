@@ -20,7 +20,7 @@ define(['underscore', 'view'], function (_, view) {
 	}
     
     function render() {
-        view.renderComponent('subGame', this.subGameInfo);
+        view.renderSubGame(this.subGameInfo);
     }
     
 	
