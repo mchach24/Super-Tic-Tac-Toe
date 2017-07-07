@@ -1,18 +1,5 @@
-define(['underscore', 'snapsvg', 'render'], function (_, Snap, render) {
+define(['underscore', 'render', 'utils'], function (_, render, utils) {
     //'use strict';
-    
-    _.mixin({
-        getObjectMethodNames: function (obj) {
-            var methods = [];
-            
-            _(obj).each(function (value, key) {
-                if (_(value).isFunction() === true) 
-                    methods.push(key);
-            });
-            
-            return methods;
-        } 
-    });
     
     function renderGame() {
         renderComponent('borders');
@@ -21,7 +8,7 @@ define(['underscore', 'snapsvg', 'render'], function (_, Snap, render) {
     }
     
     function renderComponent(component, callerArgs) {
-        var renderMethods = _(render).getObjectMethodNames();
+        var renderMethods = utils.util.getObjectMethodNames(render);
         
         if (_(renderMethods).contains(component)) {
             render[component](callerArgs);

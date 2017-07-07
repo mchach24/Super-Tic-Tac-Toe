@@ -6,6 +6,12 @@ body {
     overflow: hidden;
 }
 
+a.navbar-brand:focus {
+    outline: none;
+}
+
+/* game stuff below */
+
 #gameContainer {
     height: 90vh; /* 90% of parent's height */
     width: 90vh; /* sets width to the same as height, so a 1:1 aspect ratio */
@@ -20,18 +26,18 @@ body {
 	position: absolute;
   	left: 50%;
     top: 50%;
-	transform: translate(-50%, -47%);
+	transform: translate(-50%, -47%); /* 47% to account for the space taken up by the navbar */
   	-webkit-transform: translate(-50%, -47%);
 	
 	border-radius: 5px;
 }
 
 #gameSVG .gameSVG_subGame-square {
-	fill: #CCC;
+	fill: #DDD;
 }
 
-.gameSVG_subGame:hover .gameSVG_subGame-square {
-	fill: #000;
+#gameSVG .gameSVG_subGame-square:hover {
+	fill: #BBB;
 }
 
 #gameSVG .gameSVG_inner-border {

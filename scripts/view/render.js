@@ -45,9 +45,17 @@ define(['snapsvg'], function (Snap) {
          * @property {object} domain - stores the minimum and maximum values for each x and y in this subGame, and contains a method 'diff' that returns the difference between the maximum and minimum of either x or y.
          */
         subGameInfo.domain = { 
-            x: { min: gameSVG.viewbox.thirdOf('width', 1) * (subGameColumn - 1), max: gameSVG.viewbox.thirdOf('width', 1) * subGameColumn },
-            y: { min: gameSVG.viewbox.thirdOf('height', 1) * (subGameRow - 1), max: gameSVG.viewbox.thirdOf('height', 1) * subGameRow },
-            diff: function (prop) { return (this[prop].max - this[prop].min) }
+            x: { 
+                min: gameSVG.viewbox.thirdOf('width', 1) * (subGameColumn - 1), 
+                max: gameSVG.viewbox.thirdOf('width', 1) * subGameColumn 
+            },
+            y: { 
+                min: gameSVG.viewbox.thirdOf('height', 1) * (subGameRow - 1), 
+                max: gameSVG.viewbox.thirdOf('height', 1) * subGameRow 
+            },
+            diff: function (prop) { 
+                return (this[prop].max - this[prop].min) 
+            }
         };
         
         function createSubGameSquares(domain) {

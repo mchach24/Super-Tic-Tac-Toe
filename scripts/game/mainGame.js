@@ -1,7 +1,7 @@
 define(['underscore', 'SubGame', 'view'], function (_, SubGame, view) {
     //'use strict';
     
-    var subGames;
+    var subGames; // array 
     
     function initSubGames() {
         // this function returns an array of SubGames: one for each position
@@ -40,9 +40,17 @@ define(['underscore', 'SubGame', 'view'], function (_, SubGame, view) {
         view.renderGame();
     }
     
+    function moveHandler(subGameID, squareID) {
+        
+    }
+    
 	return function () {
 		subGames = initSubGames(); // returns array of instances; renders subGames
         
         render();
+        
+        return {
+            playMove: moveHandler
+        }
 	};
 });
