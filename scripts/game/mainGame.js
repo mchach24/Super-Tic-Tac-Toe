@@ -41,7 +41,7 @@ define(['underscore', 'SubGame', 'view'], function (_, SubGame, view) {
     }
     
     function moveHandler(subGameID, squareID) {
-        
+        console.log(subGameID, squareID);
     }
     
 	return function () {

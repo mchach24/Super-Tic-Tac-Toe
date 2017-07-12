@@ -6,9 +6,7 @@ define(['Game', 'utils'], function (Game, utils) {
         var subGame = utils.game.getSubGameInfoFromID(id),                  
             square = utils.game.getSquareInfoFromID(id);
         
-        console.log(subGame, square);
-        
-        game.playMove();
+        game.playMove(subGame.id, square.id);
     }
     
     return {

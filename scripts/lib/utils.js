@@ -74,12 +74,12 @@ define(['underscore'], function (_) {
         return position;
     }
     
-    function getSubGameFromID(fullID) {
-        console.log(fullID);
+    function getSubGameInfoFromID(fullID) {
         var subGameID = fullID.match(/subGame_r[1-3]c[1-3]/)[0]; // match returns object, prop '0' is matching string
         var row = getRowFromID(subGameID), // get just the number, without the 'r'
             column = getColumnFromID(subGameID);
         var position = IDtoPosition('r' + row + 'c' + column);
+        
         return {
             id: subGameID,
             row: row,
@@ -88,11 +88,12 @@ define(['underscore'], function (_) {
         };
     }
     
-    function getSquareFromID(fullID) {
+    function getSquareInfoFromID(fullID) {
         var squareID = fullID.match(/square_r[1-3]c[1-3]/)[0]; // match returns object, prop '0' is matching string
         var row = getRowFromID(squareID), // get just the number, without the 'r'
             column = getColumnFromID(squareID);
         var position = IDtoPosition('r' + row + 'c' + column);
+        
         return {
             id: squareID,
             row: row,
@@ -115,8 +116,8 @@ define(['underscore'], function (_) {
             getRowFromID: getRowFromID,
             getColumnFromID: getColumnFromID,
             
-            getSubGameInfoFromID: getSubGameFromID,
-            getSquareInfoFromID: getSquareFromID
+            getSubGameInfoFromID: getSubGameInfoFromID,
+            getSquareInfoFromID: getSquareInfoFromID
         }
     }
 });
