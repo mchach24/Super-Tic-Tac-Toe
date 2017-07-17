@@ -62,3 +62,14 @@ a.navbar-brand:focus {
         width: 94vw;
     }
 }
+
+.x {
+	stroke-width: 5;
+	stroke: #000; /* blue if wanted: #1976d2; */
+}
+
+.o {
+	fill: none;
+	stroke: #000;
+	stroke-width: 5;
+}

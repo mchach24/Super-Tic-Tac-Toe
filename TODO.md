@@ -7,7 +7,7 @@
 
 ~2. Write javascript rendering and view~
 
-3. Write the logic of the game (controller, listener, add to model)
+~3. Write the logic of the game (controller, listener, add to model)~
 
 #### Far Along
 
@@ -24,8 +24,12 @@
 
 [ x ] While the `<use>` element did appear to work for SVG, it doesn't allow for the inner contents to be referenced. That is, the individual squares in the subGames could not be assigned event listeners to themselves, only to the `<use>` element as a whole (couldn't assign a hover > color change without changing the whole `<use>`'s color. I first considered writing a script that just replaces the `<use>` elements with the symbol they reference verbatim. Or *each subGame instance could draw its own board via another script file with the needed methods to do so.*
 
-## Specific List
+## List
 
-~1. Add underscore.js to lib and set that up.~
+1. Finish JavaScript
 
-~2. Learn more about requirejs: `define` function,~
+2. Switch to npm packages
+
+3. Add 'version 2' branch to repo, use npm for loading modules, rewrite code using backbone, maybe ditch bootstrap. 
+
+

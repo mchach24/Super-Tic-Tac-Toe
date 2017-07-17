@@ -1,23 +1,67 @@
 define(['snapsvg'], function (Snap) {
     //'use strict';
     
+    /**
+     * @prop svg - Snap svg object of #gameSVG, to be used in rendering elements
+     * @prop viewbox - an object containing nested properties and methods that apply to the viewbox of the svg:
+     *      @prop viewbox.width - width of viewbox
+     *      @prop viewbox.height - height of viewbox
+     *      @method viewbox.thirdOf - returns a third increment of either width or height, numerator determined by its corresponding argument
+     *      @method viewbox.ninthOf - same concept as thirdOf, but with 9 as the denominator
+     * @prop objects - an object of any elements that are rendered on the svg, in the case that they need be referenced later
+     */
     var gameSVG = {
         svg: Snap("#gameSVG"), // makes a snap svg object out of the svg element "#gameSVG" (which has a viewbox of 1800 units height and width)
         viewbox: {
             width: Snap("#gameSVG").attr("viewBox").width,
             height: Snap("#gameSVG").attr("viewBox").height,
             thirdOf: function (prop, numerator) {
-                if (numerator < 0 || numerator > 3) throw "Error: thirdOf() parameter 'numerator' must be between 0 and 3"
+                if (numerator < 0 || numerator > 3) throw "Error: thirdOf() parameter 'numerator' must be between 0 and 3";
                 return this[prop] * (numerator / 3);
+            },
+            ninthOf: function (prop, numerator) {
+                if (numerator < 0 || numerator > 9) throw "Error: ninthOf() parameter 'numerator' must be between 0 and 9";
+                return this[prop] * (numerator / 9)
             }
         },
         objects: {
-            subGames: Snap.set()
+            subGames: Snap.set(), // could be changed to an initiated group, like gameObjects, to group subGames in a <g> element
+            gameObjects: null // will be initiated as a <g>, which will contain any x's and o's, as they must be in the first group created so that they overlap over other earlier-created elements
         }
     };
+
+    function initGameObjects() {
+        gameSVG.objects.gameObjects = gameSVG.svg.group().attr({ 'id': 'gameObjects' });
+    }
+
+    /**
+     * @function getDomain - returns an object called domain which contains the minimum and maximum values for each x and y in a subGame. subGame is determined by row# and column#
+     * 
+     * @param {*} row - row# of subGame
+     * @param {*} column - column# of subGame
+     */
+    function getDomain(row, column) {
+        var domain = {
+            x: { 
+                min: gameSVG.viewbox.thirdOf('width', 1) * (column - 1), 
+                max: gameSVG.viewbox.thirdOf('width', 1) * column 
+            },
+            y: { 
+                min: gameSVG.viewbox.thirdOf('height', 1) * (row - 1), 
+                max: gameSVG.viewbox.thirdOf('height', 1) * row 
+            },
+            diff: function (prop) { 
+                return (this[prop].max - this[prop].min) 
+            }
+        };
+
+        return domain;
+    }
     
     /**
      * @param {array} elements
+     * 
+     * @returns {SnapSVG group} of elements, puts elements in a <g> as a result
      */
     function groupElements(elements) {        
         var g = gameSVG.svg.group();
@@ -29,37 +73,20 @@ define(['snapsvg'], function (Snap) {
         
         return g;
     }
-    
-    
+
     /**
-     * @param {Object} subGameInfo - information to identify subGame and where it should be positioned on the SVG
+     * @param {object literal} subGameInfo - information to identify subGame and where it should be positioned on the SVG
      */
     function renderSubGame(subGameInfo) {
+
+        var subGameID = subGameInfo.id;
         
-        var subGameRow = subGameInfo.row,
-            subGameColumn = subGameInfo.column,
-            subGameID = subGameInfo.id;
-        
-        // subGameInfo (with domain) can be returned to another view method if ever need
         /**
-         * @property {object} domain - stores the minimum and maximum values for each x and y in this subGame, and contains a method 'diff' that returns the difference between the maximum and minimum of either x or y.
+         * @func anonymous - IIFE, returns subGameSquares, argument input is subGameInfo.domain, sets return value to subGameSquares
          */
-        subGameInfo.domain = { 
-            x: { 
-                min: gameSVG.viewbox.thirdOf('width', 1) * (subGameColumn - 1), 
-                max: gameSVG.viewbox.thirdOf('width', 1) * subGameColumn 
-            },
-            y: { 
-                min: gameSVG.viewbox.thirdOf('height', 1) * (subGameRow - 1), 
-                max: gameSVG.viewbox.thirdOf('height', 1) * subGameRow 
-            },
-            diff: function (prop) { 
-                return (this[prop].max - this[prop].min) 
-            }
-        };
-        
-        function createSubGameSquares(domain) {
-            var subGameSquares = [];
+        var subGameSquares = (function () {
+            var domain = subGameInfo.domain,
+                subGameSquares = [];
             
             for (var r = 1; r <= 3; r++) { // row
                 for (var c = 1; c <= 3; c++) { // column
@@ -83,9 +110,7 @@ define(['snapsvg'], function (Snap) {
             }
             
             return subGameSquares;
-        }
-        
-        var subGameSquares = createSubGameSquares(subGameInfo.domain);
+        })();
         
         var subGame = groupElements(subGameSquares).attr({
             class: 'gameSVG_subGame',
@@ -163,6 +188,9 @@ define(['snapsvg'], function (Snap) {
         });
     }
     
+    /**
+     * @func renderBorders - renders the borders for each subGame
+     */
     function renderBorders() {
         // these lines form the outer border, the "box" around the game
         var outerBorderLines = [
@@ -220,9 +248,149 @@ define(['snapsvg'], function (Snap) {
             })
         ];
     }
+
+    /**
+     * @func createX creates an x, formed by two perpendicular lines
+     * 
+     * @param {SnapSVG matrix} matrix - a SnapSVG matrix, used for translating coordinates (based on the subGame and square positons) and scaling dimensions
+     * @param {number} squareDimensions.width - width of square
+     * @param {number} squareDimensions.height - height of square
+     * 
+     * @returns x, a SnapSVG group object (of the lines)
+     */
+    function createX(matrix, squareDimensions) {
+
+        var squareWidth = squareDimensions.width,
+            squareHeight = squareDimensions.height;
+
+        var x = gameSVG.svg.group(
+            gameSVG.svg.el('line', {
+                x1: matrix.x(0, 0),
+                y1: matrix.y(0, 0),
+                x2: matrix.x(squareWidth, squareHeight),
+                y2:  matrix.y(squareWidth, squareHeight)
+            }),
+            gameSVG.svg.el('line', {
+                x1: matrix.x(squareWidth, 0),
+                y1: matrix.y(squareWidth, 0),
+                x2: matrix.x(0, squareHeight),
+                y2: matrix.y(0, squareHeight)
+            })
+        ).addClass('x');
+
+        return x;
+    }
+    
+    function renderX(matrix, squareDimensions) {
+
+        var x = createX(matrix, squareDimensions);
+        
+        /*
+        if needed: could be used for fixing the issue with hovering over a subGame being obstructed by the x
+
+        var subGameID = subGameInfo.id,
+            squareID = squareInfo.id;
+        x.attr({
+            'id': 'x-in-subGame_' + subGameID + '-square_' + squareID
+        });
+        */
+
+        gameSVG.objects.gameObjects.add(x);
+    }
+
+    /**
+     * @func createO - creates an o, simply a hollow circle (hollowness done by CSS)
+     * 
+     * @param {SnapSVG matrix} matrix - a SnapSVG matrix, used for translating coordinates (based on the subGame and square positons) and scaling dimensions
+     * @param {number} squareDimensions.width - width of square
+     * @param {number} squareDimensions.height - height of square
+     * @param {number} centerOrigin.x - x coordinate of the center origin of the square
+     * @param {number} centerOrigin.y - y coordinate of the center origin of the square
+     */
+    function createO(matrix, squareDimensions, centerOrigin) {
+        var radius = squareDimensions.width / 2;
+
+        console.log(radius);
+
+        var o = gameSVG.svg.group(
+            gameSVG.svg.el('circle', {
+                cx: matrix.x(centerOrigin.x, centerOrigin.y),
+                cy: matrix.y(centerOrigin.x, centerOrigin.y),
+                r: matrix.split().scalex * radius
+            })
+        ).addClass('o');
+
+        return o;
+    }
+
+    function renderO(matrix, squareDimensions, centerOrigin) {
+
+        var o = createO(matrix, squareDimensions, centerOrigin);
+
+        /*
+        if needed: could be used for fixing the issue with hovering over a subGame being obstructed by the x
+
+        var subGameID = subGameInfo.id,
+            squareID = squareInfo.id;
+        x.attr({
+            'id': 'o-in-subGame_' + subGameID + '-square_' + squareID
+        });
+        */
+
+        gameSVG.objects.gameObjects.add(o);
+    }
+
+    /**
+     * @func renderGameObject - serves as a proxy for rendering an x or o, does some setup code, creates matrix for translating and scaling to fit an x or o on the board in the correct spot and with correct size
+     * 
+     * @param {string} player - 'x' or 'o'
+     * @param {object literal} subGameInfo - with row, column, position, id, domain
+     * @param {object literal} squareInfo - with row, column, position, id
+     */
+    function renderGameObject(player, subGameInfo, squareInfo) {
+        var matrix = Snap.matrix();
+
+        var subGameDomain = subGameInfo.domain,
+            squareColumn = squareInfo.column,
+            squareRow = squareInfo.row;
+
+        var xSubGameOffset = subGameDomain.x.min, // offset from x=0 to start of subGame
+            xSquareOffset = gameSVG.viewbox.ninthOf('width', squareColumn - 1); // offset from start of subGame to the beginning of the square in the x axis
+        var xOffset = xSubGameOffset + xSquareOffset; // combined
+
+        var ySubGameOffset = subGameDomain.y.min, // offset from y=0 to start of subGame
+            ySquareOffset = gameSVG.viewbox.ninthOf('height', squareRow - 1); // offset from start of subGame to the beginning of the square in the y axis
+        var yOffset = ySubGameOffset + ySquareOffset; // combined
+
+        matrix.translate(xOffset, yOffset); // translateX and translateY based on the above values
+
+        var squareDimensions = {
+            width: gameSVG.viewbox.width / 9,
+            height: gameSVG.viewbox.height / 9
+        };
+
+        var centerOrigin = {
+            x: squareDimensions.width / 2,
+            y: squareDimensions.height / 2
+        }
+
+        matrix.scale(0.8, 0.8, centerOrigin.x, centerOrigin.y); // scales any values down to 80% with centerOrigin as the reference point for scaling (so it scales from the center of the square)
+
+        if (player === 'x') {
+            renderX(matrix, squareDimensions);
+        } else {
+            renderO(matrix, squareDimensions, centerOrigin);
+        }
+
+    }
     
     return {
-        subGame: renderSubGame,
-        borders: renderBorders
+        getDomain: getDomain,
+        components: {
+            subGame: renderSubGame,
+            borders: renderBorders
+        },
+        renderGameObject: renderGameObject,
+        initGameObjects: initGameObjects
     };
 });

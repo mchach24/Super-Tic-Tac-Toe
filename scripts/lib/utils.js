@@ -12,21 +12,21 @@ define(['underscore'], function (_) {
     }
     
     /** 
-     * @Func getRow returns the calculated value of row based on position
+     * @func getRow returns the calculated value of row based on position
      */
     function getRow(position) {
         return Math.floor(position / 3) + 1;
     }
     
     /** 
-     * @Func getColumn returns the calculated value of column based on position
+     * @func getColumn returns the calculated value of column based on position
      */
     function getColumn(position) {
         return (position % 3) + 1;
     }
     
     /**
-     * @Func getRowFromID returns the numeric value that comes after 'r' in an ID
+     * @func getRowFromID returns the numeric value that comes after 'r' in an ID
      */
     function getRowFromID(id) {
         if (/subGame/.test(id) && /square/.test(id)) { // if ID contains both subGame and square,
@@ -37,7 +37,7 @@ define(['underscore'], function (_) {
     }
     
     /**
-     * @Func getColumnFromID returns the numeric value that comes after 'c' in an ID
+     * @func getColumnFromID returns the numeric value that comes after 'c' in an ID
      */
     function getColumnFromID(id) {
         if (/subGame/.test(id) && /square/.test(id)) { // if ID contains both subGame and square,
@@ -48,7 +48,7 @@ define(['underscore'], function (_) {
     }
     
     /**
-     * @Func positonToID - returns ID, such as r2c1, based on argument of position, such as 3
+     * @func positonToID - returns ID, such as r2c1, based on argument of position, such as 3
      * 
      * @param {number} position - 0-8, corresponds to subGame or subGame-square
      */
@@ -61,7 +61,7 @@ define(['underscore'], function (_) {
     }
     
     /**
-     * @Func IDtoPosition - returns a position, a number between 0 and 8, based on inputted id ('r3c1')
+     * @func IDtoPosition - returns a position, a number between 0 and 8, based on inputted id ('r3c1')
      *
      * @param {string} id - id of either a subGame or subGame-square in the format of 'r1c1'
      */
@@ -73,8 +73,19 @@ define(['underscore'], function (_) {
         
         return position;
     }
+
+    function getSeparateIDsFromFullID(fullID) {
+        var fullSubGameID = fullID.match(/subGame_r[1-3]c[1-3]/)[0], // returns string that matches regexp, like: "subGame_r1c3"
+            fullSquareID = fullID.match(/square_r[1-3]c[1-3]/)[0]; // returns string that matches regexp, like: "square_r2c1"
+
+        return {
+            subGameID: fullSubGameID.match(/r[1-3]c[1-3]/)[0], // gets JUST the r1c3 part of "subGame_r1c3"
+            squareID: fullSquareID.match(/r[1-3]c[1-3]/)[0] // same as above
+        }
+
+    }
     
-    function getSubGameInfoFromID(fullID) {
+    /*function getSubGameInfoFromID(fullID) {
         var subGameID = fullID.match(/subGame_r[1-3]c[1-3]/)[0]; // match returns object, prop '0' is matching string
         var row = getRowFromID(subGameID), // get just the number, without the 'r'
             column = getColumnFromID(subGameID);
@@ -100,7 +111,7 @@ define(['underscore'], function (_) {
             column: column,
             position: position
         };
-    }
+    }*/
     
     return {
         util: {
@@ -116,8 +127,7 @@ define(['underscore'], function (_) {
             getRowFromID: getRowFromID,
             getColumnFromID: getColumnFromID,
             
-            getSubGameInfoFromID: getSubGameInfoFromID,
-            getSquareInfoFromID: getSquareInfoFromID
+            getSeparateIDs: getSeparateIDsFromFullID
         }
     }
 });
