@@ -4,12 +4,12 @@ requirejs.config({
     baseUrl: 'scripts/',
     shim: {
         'bootstrap': {
-            deps: ['jQuery'] 
+            deps: ['jquery'] 
         }
     },
     paths: {
 		// lib/
-        'jQuery': "../lib/jquery_3.2.1/jquery-3.2.1.min",
+        'jquery': "../lib/jquery_3.2.1/jquery-3.2.1.min",
         'bootstrap': "../lib/bootstrap_3.3.7/js/bootstrap.min",
 		'snapsvg': "../lib/snap.svg_0.5.1/snap.svg-min",
 		'underscore': "../lib/underscore.js_1.8.3/underscore-min",

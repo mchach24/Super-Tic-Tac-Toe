@@ -37,6 +37,10 @@ a.navbar-brand:focus {
 }
 
 #gameSVG .gameSVG_subGame-square:hover {
+	fill: #CCC;
+}
+
+#gameSVG .gameSVG_subGame.sg-disabled .gameSVG_subGame-square {
 	fill: #BBB;
 }
 

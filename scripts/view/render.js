@@ -25,7 +25,7 @@ define(['snapsvg'], function (Snap) {
             }
         },
         objects: {
-            subGames: Snap.set(), // could be changed to an initiated group, like gameObjects, to group subGames in a <g> element
+            subGames: Snap.set(),
             gameObjects: null // will be initiated as a <g>, which will contain any x's and o's, as they must be in the first group created so that they overlap over other earlier-created elements
         }
     };
@@ -75,7 +75,7 @@ define(['snapsvg'], function (Snap) {
     }
 
     /**
-     * @param {object literal} subGameInfo - information to identify subGame and where it should be positioned on the SVG
+     * @param {Object} subGameInfo - information to identify subGame and where it should be positioned on the SVG
      */
     function renderSubGame(subGameInfo) {
 
@@ -310,8 +310,6 @@ define(['snapsvg'], function (Snap) {
     function createO(matrix, squareDimensions, centerOrigin) {
         var radius = squareDimensions.width / 2;
 
-        console.log(radius);
-
         var o = gameSVG.svg.group(
             gameSVG.svg.el('circle', {
                 cx: matrix.x(centerOrigin.x, centerOrigin.y),
@@ -344,8 +342,8 @@ define(['snapsvg'], function (Snap) {
      * @func renderGameObject - serves as a proxy for rendering an x or o, does some setup code, creates matrix for translating and scaling to fit an x or o on the board in the correct spot and with correct size
      * 
      * @param {string} player - 'x' or 'o'
-     * @param {object literal} subGameInfo - with row, column, position, id, domain
-     * @param {object literal} squareInfo - with row, column, position, id
+     * @param {Object} subGameInfo - with row, column, position, id, domain
+     * @param {Object} squareInfo - with row, column, position, id
      */
     function renderGameObject(player, subGameInfo, squareInfo) {
         var matrix = Snap.matrix();
@@ -383,6 +381,14 @@ define(['snapsvg'], function (Snap) {
         }
 
     }
+
+    function disableSubGame(position) {
+        gameSVG.objects.subGames[position].addClass('sg-disabled');
+    }
+
+    function enableSubGame(position) {
+        gameSVG.objects.subGames[position].removeClass('sg-disabled');
+    }
     
     return {
         getDomain: getDomain,
@@ -391,6 +397,8 @@ define(['snapsvg'], function (Snap) {
             borders: renderBorders
         },
         renderGameObject: renderGameObject,
-        initGameObjects: initGameObjects
+        initGameObjects: initGameObjects,
+        disableSubGame: disableSubGame,
+        enableSubGame: enableSubGame
     };
 });

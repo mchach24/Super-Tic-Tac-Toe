@@ -38,20 +38,25 @@ define(['underscore', 'SubGame', 'view', 'utils'], function (_, SubGame, view, u
     }
     
     function render() {         
+        renderSubGames();
+        
+        view.renderGame();
+    }
+
+    function renderSubGames() {
         _(subGames).each(function (value) {
             var subGame = value;
             
             subGame.render();
         });
-        
-        view.renderGame();
     }
 
     function isValidMove(subGame, squareInfo) {
         var subGameIsWon = subGame.winState().isWon,
+            subGameIsDisabled = subGame.isDisabled(),
             squareIsOccupied = subGame.squareState(squareInfo).isOccupied;
 
-        if (subGameIsWon || squareIsOccupied) {
+        if (subGameIsWon || squareIsOccupied || subGameIsDisabled) {
             return false; // move is not valid if the subGame has already been won or if a move has already been played at that square in the subGame
         } else {
             return true;
@@ -61,7 +66,7 @@ define(['underscore', 'SubGame', 'view', 'utils'], function (_, SubGame, view, u
     /**
      * @func moveHandler
      * 
-     * @param {*} ids 
+     * @param {Object} ids - contains subGameID and squareID of square that was clicked.
      */
     function moveHandler(ids) {
         var subGameID = ids.subGameID,
@@ -80,12 +85,24 @@ define(['underscore', 'SubGame', 'view', 'utils'], function (_, SubGame, view, u
         }
 
         if (isValidMove(subGame, squareInfo)) {
-            view.renderMove(turn.player, subGameInfo, squareInfo); // hard-coded x is temporary
+            view.renderMove(turn.player, subGameInfo, squareInfo);
 
-            subGame.updateSquareState(turn.player, squareInfo);
+            subGame.updateSquare(turn.player, squareInfo.row, squareInfo.column);
+
+            disableAllSubGamesExcept(squareInfo.position);
 
             turn.nextTurn();
         }
+    }
+
+    function disableAllSubGamesExcept(positionToNotBeDisabled) {
+        _(subGames).each(function (subGame, position) {
+            if (position !== positionToNotBeDisabled) {
+                subGame.disable();
+            } else {
+                subGame.enable();
+            }
+        });
     }
     
     /**

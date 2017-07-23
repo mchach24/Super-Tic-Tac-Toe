@@ -10,6 +10,20 @@ define(['underscore'], function (_) {
         
         return methods; 
     }
+
+    function arrayElementsAreEqual(array) {
+        var first = array[0];
+        if (first === null) {
+            return false;
+        }
+        for (var i = 1; i < array.length; i++) {
+            if (array[i] !== first) {
+                return false;
+            }
+        }
+
+        return true;
+    }
     
     /** 
      * @func getRow returns the calculated value of row based on position
@@ -66,8 +80,8 @@ define(['underscore'], function (_) {
      * @param {string} id - id of either a subGame or subGame-square in the format of 'r1c1'
      */
     function IDtoPosition(id) {
-        var row = getRowFromID(id),
-            column = getColumnFromID(id);
+        var row = parseInt(getRowFromID(id)),
+            column = parseInt(getColumnFromID(id));
         
         var position = (3 * (row - 1) + column) - 1;
         
@@ -114,9 +128,8 @@ define(['underscore'], function (_) {
     }*/
     
     return {
-        util: {
-            getObjectMethodNames: getObjectMethodNames
-        },
+        getObjectMethodNames: getObjectMethodNames,
+        arrayElementsAreEqual: arrayElementsAreEqual,
         game: {
             positionToID: positionToID,
             IDtoPosition: IDtoPosition,

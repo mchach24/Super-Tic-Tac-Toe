@@ -8,7 +8,7 @@ define(['underscore', 'render', 'utils'], function (_, render, utils) {
     }
     
     function renderComponent(component, callerArgs) {
-        var components = utils.util.getObjectMethodNames(render.components);
+        var components = utils.getObjectMethodNames(render.components);
         
         if (_(components).contains(component)) {
             render.components[component](callerArgs);
@@ -18,10 +18,9 @@ define(['underscore', 'render', 'utils'], function (_, render, utils) {
     }
 
     /**
-     * 
      * @param {string} player - x or o
-     * @param {Object literal} subGameInfo - subGameInfo object 
-     * @param {Object literal} squareInfo - squareInfo object
+     * @param {Object} subGameInfo - subGameInfo object 
+     * @param {Object} squareInfo - squareInfo object
      */
     function renderMove(player, subGameInfo, squareInfo) {
         if (player === 'x' || player === 'o') {
@@ -48,6 +47,8 @@ define(['underscore', 'render', 'utils'], function (_, render, utils) {
         renderGame: renderGame,
         renderSubGame: _(renderComponent).partial('subGame'), // binds 'subGame' as argument
         renderMove: renderMove,
-        initGameObjects: render.initGameObjects
+        initGameObjects: render.initGameObjects,
+        disableSubGame: render.disableSubGame,
+        enableSubGame: render.enableSubGame
     }
 });
