@@ -17,7 +17,8 @@ requirejs.config({
 		// scripts/
             // game/
 		'Game': "game/mainGame",
-		'SubGame': "game/subGame",
+        'SubGame': "game/subGame",
+        "winCheck": "game/winCheck",
             // view/
         'view': "view/view",
         'render': "view/render",

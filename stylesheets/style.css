@@ -77,3 +77,14 @@ a.navbar-brand:focus {
 	stroke: #000;
 	stroke-width: 5;
 }
+
+.sg-x {
+	stroke: #000;
+	stroke-width: 10;
+}
+
+.sg-o {
+	fill: none;
+	stroke: #000;
+	stroke-width: 10;
+}

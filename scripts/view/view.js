@@ -1,4 +1,4 @@
-define(['underscore', 'render', 'utils'], function (_, render, utils) {
+define(['underscore', 'jquery', 'render', 'utils'], function (_, $, render, utils) {
     //'use strict';
     
     function renderGame() {
@@ -41,14 +41,26 @@ define(['underscore', 'render', 'utils'], function (_, render, utils) {
 
         return render.getDomain(row, column);
     }
+
+    function displayGameWinner(winner) {
+        $('#winner').text(winner.toUpperCase());
+        $('#winModal').modal('show');
+    }
     
     return {
+        initGameObjects: render.initGameObjects,
         getDomain: getDomain,
+
         renderGame: renderGame,
         renderSubGame: _(renderComponent).partial('subGame'), // binds 'subGame' as argument
         renderMove: renderMove,
-        initGameObjects: render.initGameObjects,
+
+        // subGame logic-related view methods
         disableSubGame: render.disableSubGame,
-        enableSubGame: render.enableSubGame
+        enableSubGame: render.enableSubGame,
+        renderWin: render.renderWin,
+
+        // mainGame logic-related view methods
+        displayWinner: displayGameWinner
     }
 });

@@ -257,7 +257,7 @@ define(['snapsvg'], function (Snap) {
      * @param {number} squareDimensions.height - height of square
      * 
      * @returns x, a SnapSVG group object (of the lines)
-     */
+     *
     function createX(matrix, squareDimensions) {
 
         var squareWidth = squareDimensions.width,
@@ -279,21 +279,32 @@ define(['snapsvg'], function (Snap) {
         ).addClass('x');
 
         return x;
-    }
+    }*/
     
-    function renderX(matrix, squareDimensions) {
+    function renderX(matrix, squareDimensions, type) {
+        if (!type) type = 'square';
 
-        var x = createX(matrix, squareDimensions);
-        
-        /*
-        if needed: could be used for fixing the issue with hovering over a subGame being obstructed by the x
+        var squareWidth = squareDimensions.width,
+            squareHeight = squareDimensions.height;
 
-        var subGameID = subGameInfo.id,
-            squareID = squareInfo.id;
-        x.attr({
-            'id': 'x-in-subGame_' + subGameID + '-square_' + squareID
-        });
-        */
+        var x = gameSVG.svg.group(
+            gameSVG.svg.el('line', {
+                x1: matrix.x(0, 0),
+                y1: matrix.y(0, 0),
+                x2: matrix.x(squareWidth, squareHeight),
+                y2:  matrix.y(squareWidth, squareHeight)
+            }),
+            gameSVG.svg.el('line', {
+                x1: matrix.x(squareWidth, 0),
+                y1: matrix.y(squareWidth, 0),
+                x2: matrix.x(0, squareHeight),
+                y2: matrix.y(0, squareHeight)
+            })
+        );
+
+        var xClass = type === 'square' ? 'x' : 'sg-x';
+
+        x.addClass(xClass);
 
         gameSVG.objects.gameObjects.add(x);
     }
@@ -306,7 +317,7 @@ define(['snapsvg'], function (Snap) {
      * @param {number} squareDimensions.height - height of square
      * @param {number} centerOrigin.x - x coordinate of the center origin of the square
      * @param {number} centerOrigin.y - y coordinate of the center origin of the square
-     */
+     *
     function createO(matrix, squareDimensions, centerOrigin) {
         var radius = squareDimensions.width / 2;
 
@@ -319,21 +330,26 @@ define(['snapsvg'], function (Snap) {
         ).addClass('o');
 
         return o;
-    }
+    }*/
 
-    function renderO(matrix, squareDimensions, centerOrigin) {
+    function renderO(matrix, squareDimensions, centerOrigin, type) {
+        if (!type) type = 'square';
 
-        var o = createO(matrix, squareDimensions, centerOrigin);
+        console.log(type);
 
-        /*
-        if needed: could be used for fixing the issue with hovering over a subGame being obstructed by the x
+        var radius = squareDimensions.width / 2;
 
-        var subGameID = subGameInfo.id,
-            squareID = squareInfo.id;
-        x.attr({
-            'id': 'o-in-subGame_' + subGameID + '-square_' + squareID
-        });
-        */
+        var o = gameSVG.svg.group(
+            gameSVG.svg.el('circle', {
+                cx: matrix.x(centerOrigin.x, centerOrigin.y),
+                cy: matrix.y(centerOrigin.x, centerOrigin.y),
+                r: matrix.split().scalex * radius
+            })
+        )
+
+        var oClass = type === 'square' ? 'o' : 'sg-o';
+
+        o.addClass(oClass);
 
         gameSVG.objects.gameObjects.add(o);
     }
@@ -389,16 +405,51 @@ define(['snapsvg'], function (Snap) {
     function enableSubGame(position) {
         gameSVG.objects.subGames[position].removeClass('sg-disabled');
     }
+
+    function renderSubGameWin(subGameInfo, winner) {
+        var matrix = Snap.matrix();
+
+        var domain = subGameInfo.domain;
+
+        var xOffset = domain.x.min,
+            yOffset = domain.y.min;
+
+        matrix.translate(xOffset, yOffset);
+
+        console.log(subGameInfo);
+
+        var subGameDimensions = {
+            width: domain.diff('x'),
+            height: domain.diff('y')
+        };
+
+        var centerOrigin = {
+            x: subGameDimensions.width / 2,
+            y: subGameDimensions.height / 2
+        };
+
+        matrix.scale(0.8, 0.8, centerOrigin.x, centerOrigin.y);
+
+        if (winner === 'x') {
+            renderX(matrix, subGameDimensions, 'subGame');
+        } else {
+            renderO(matrix, subGameDimensions, centerOrigin, 'subGame');
+        }
+    }
     
     return {
         getDomain: getDomain,
+
+        initGameObjects: initGameObjects,
+        renderGameObject: renderGameObject,
+
         components: {
             subGame: renderSubGame,
             borders: renderBorders
         },
-        renderGameObject: renderGameObject,
-        initGameObjects: initGameObjects,
+        
         disableSubGame: disableSubGame,
-        enableSubGame: enableSubGame
+        enableSubGame: enableSubGame,
+        renderWin: renderSubGameWin
     };
 });
