@@ -72,6 +72,7 @@ define(['underscore', 'SubGame', 'view', 'winCheck', 'utils'], function (_, SubG
      * @param {Object} ids - contains subGameID and squareID of square that was clicked.
      */
     function moveHandler(ids) {
+        console.log(gameOver);
         if (gameOver) return;
 
         var subGameID = ids.subGameID,
@@ -136,8 +137,10 @@ define(['underscore', 'SubGame', 'view', 'winCheck', 'utils'], function (_, SubG
      * @example when a move is played in square r2c3 in any subGame, the only subGame that is still enabled for the next player is subGame r2c3
      */
     function disableAllSubGamesExcept(positionToNotBeDisabled) {
-        if (getSubGame(positionToNotBeDisabled).isWon()) { // if the subGame that is supposed to be enabled is already won, enable all other subGames that aren't already won
-            _(subGames).each(function (subGame, position) {
+        if (gameOver) {
+            disableAllSubGames();
+        } else if (getSubGame(positionToNotBeDisabled).isWon()) { // if the subGame that is supposed to be enabled is already won, enable all other subGames that aren't already won
+            _(subGames).each(function (subGame) {
                 if (!subGame.isWon()) {
                     subGame.enable();
                 }
@@ -152,6 +155,30 @@ define(['underscore', 'SubGame', 'view', 'winCheck', 'utils'], function (_, SubG
             });
         }
     }
+
+    function disableAllSubGames() {
+        _(subGames).each(function (subGame) {
+            subGame.disable();
+        });
+    }
+
+    function enableAllSubGames() {
+        _(subGames).each(function (subGame) {
+            subGame.enable();
+        });
+    }
+
+    function restartGame() {
+        view.clearGame();
+
+        gameOver = false;
+
+        turn.player = 'x';
+
+        subGames = initSubGames();
+
+        enableAllSubGames();
+    }
     
     /**
      * @constructor Game - this is the constructor for Game, which is instantiated once by controller
@@ -161,12 +188,17 @@ define(['underscore', 'SubGame', 'view', 'winCheck', 'utils'], function (_, SubG
 
         turn.player = 'x';
 
+        console.log('before init: ', subGames);
+
 		subGames = initSubGames(); // returns array of instances; renders subGames
         
+        console.log('after init: ', subGames);
+
         render();
         
         return {
-            playMove: moveHandler
+            playMove: moveHandler,
+            restart: restartGame
         }
 	};
 });

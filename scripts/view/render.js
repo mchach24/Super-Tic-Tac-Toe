@@ -74,6 +74,12 @@ define(['snapsvg'], function (Snap) {
         return g;
     }
 
+    function removeGameObjects() {
+        gameSVG.objects.gameObjects.remove();
+
+        initGameObjects();
+    }
+
     /**
      * @param {Object} subGameInfo - information to identify subGame and where it should be positioned on the SVG
      */
@@ -335,8 +341,6 @@ define(['snapsvg'], function (Snap) {
     function renderO(matrix, squareDimensions, centerOrigin, type) {
         if (!type) type = 'square';
 
-        console.log(type);
-
         var radius = squareDimensions.width / 2;
 
         var o = gameSVG.svg.group(
@@ -416,8 +420,6 @@ define(['snapsvg'], function (Snap) {
 
         matrix.translate(xOffset, yOffset);
 
-        console.log(subGameInfo);
-
         var subGameDimensions = {
             width: domain.diff('x'),
             height: domain.diff('y')
@@ -436,8 +438,27 @@ define(['snapsvg'], function (Snap) {
             renderO(matrix, subGameDimensions, centerOrigin, 'subGame');
         }
     }
+
+    /*function renderWinLine(matrix, startCoordinates, endCoordinates) {
+        var winLine = gameSVG.svg.el('line', {
+            x1: 0, y1: 0,
+            x2: 1800, y2: 1800,
+            class: 'gameWinLine'
+        });
+
+        gameSVG.objects.gameObjects.add(winLine);
+    }
+
+    function renderGameWin(type, startSubGame) {
+        var startCoordinates = {}, endCoordinates = {};
+
+        if (type === 'row')
+
+        renderWinLine();
+    }*/
     
     return {
+        clearGameObjects: removeGameObjects,
         getDomain: getDomain,
 
         initGameObjects: initGameObjects,
@@ -447,7 +468,7 @@ define(['snapsvg'], function (Snap) {
             subGame: renderSubGame,
             borders: renderBorders
         },
-        
+
         disableSubGame: disableSubGame,
         enableSubGame: enableSubGame,
         renderWin: renderSubGameWin

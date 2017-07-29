@@ -43,11 +43,12 @@ define(['underscore', 'jquery', 'render', 'utils'], function (_, $, render, util
     }
 
     function displayGameWinner(winner) {
-        $('#winner').text(winner.toUpperCase());
-        $('#winModal').modal('show');
+        $('#span_winner').text(winner.toUpperCase());
+        $('#modal_win-display').modal('show');
     }
     
     return {
+        clearGame: render.clearGameObjects,
         initGameObjects: render.initGameObjects,
         getDomain: getDomain,
 

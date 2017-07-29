@@ -122,6 +122,8 @@ define(['utils'], function (utils) {
 
 
     function checkWin(boardMapArray) {
+        //return 'x';
+
         boardMap = boardMapArray;
 
         var possibleWins = [

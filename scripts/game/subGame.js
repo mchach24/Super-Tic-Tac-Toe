@@ -37,6 +37,10 @@ define(['underscore', 'jquery', 'view', 'winCheck', 'utils'], function (_, $, vi
                 winner = null,
                 disabled = false;
 
+                function alertBoardMap() {
+                    console.log(_(boardMap).flatten());
+                }
+
                 
             return {
                 boardMap: {
@@ -88,7 +92,8 @@ define(['underscore', 'jquery', 'view', 'winCheck', 'utils'], function (_, $, vi
                 },
                 isDisabled: function () {
                     return disabled;
-                }
+                },
+                alertBoardMap: alertBoardMap
             }
         })();
         
@@ -112,6 +117,8 @@ define(['underscore', 'jquery', 'view', 'winCheck', 'utils'], function (_, $, vi
         function updateSquareState(player, row, column) {
             subGame.boardMap.setSquare(row, column, player);
 
+            subGame.alertBoardMap();
+
             subGame.checkWin();
         }
 		
@@ -120,7 +127,7 @@ define(['underscore', 'jquery', 'view', 'winCheck', 'utils'], function (_, $, vi
             
             // methods:
             render: render,
-            
+
             isWon: subGame.isWon,
             getWinner: subGame.getWinner,
 

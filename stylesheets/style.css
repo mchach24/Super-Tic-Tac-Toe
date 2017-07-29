@@ -88,3 +88,8 @@ a.navbar-brand:focus {
 	stroke: #000;
 	stroke-width: 10;
 }
+
+.gameWinLine {
+	stroke-width: 15;
+	stroke: #000;
+}
