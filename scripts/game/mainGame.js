@@ -72,7 +72,6 @@ define(['underscore', 'SubGame', 'view', 'winCheck', 'utils'], function (_, SubG
      * @param {Object} ids - contains subGameID and squareID of square that was clicked.
      */
     function moveHandler(ids) {
-        console.log(gameOver);
         if (gameOver) return;
 
         var subGameID = ids.subGameID,
@@ -187,13 +186,9 @@ define(['underscore', 'SubGame', 'view', 'winCheck', 'utils'], function (_, SubG
         gameOver = false;
 
         turn.player = 'x';
-
-        console.log('before init: ', subGames);
-
-		subGames = initSubGames(); // returns array of instances; renders subGames
         
-        console.log('after init: ', subGames);
-
+		subGames = initSubGames(); // returns array of instances; renders subGames
+    
         render();
         
         return {

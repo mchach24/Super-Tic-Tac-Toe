@@ -8,8 +8,6 @@ define(['Game', 'utils'], function (Game, utils) {
      * @example id would follow the format of "subGame-r1c1_square-r1c1"
      */
     function subGameSquareClicked(id) {
-        console.log('controlled');
-
         var separateIDs = utils.game.getSeparateIDs(id); // object containing separated IDs, like so: { subGameID: "r[1-3]c[1-3]", squareID: "r[1-3]c[1-3]"}
         
         game.playMove(separateIDs);
@@ -17,8 +15,6 @@ define(['Game', 'utils'], function (Game, utils) {
 
     function restartGame() {
         game.restart();
-
-        console.log('new game');
     }
     
     return {

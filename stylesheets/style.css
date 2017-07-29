@@ -56,7 +56,7 @@ a.navbar-brand:focus {
 
 #gameSVG .gameSVG_subGame_inner-border {
 	stroke: #000;
-	stroke-width: 3;
+	stroke-width: 4;
 }
 
 @media only screen and (max-width: 95vh) /* when width is roughly less than height */ {
