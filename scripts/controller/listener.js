@@ -9,13 +9,4 @@ define(['controller'], function (controller) {
         controller.startNewGame();
     });
 
-    $('.navbar-toggle').on('click', function () {
-
-        if ($(this).hasClass('collapsed')) {
-            $('#gameSVG').css('top', '55%');
-        } else {
-            $('#gameSVG').css('top', '50%');
-        }
-    });
-
 });

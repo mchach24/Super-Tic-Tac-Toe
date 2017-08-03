@@ -7,6 +7,8 @@ define(['underscore', 'SubGame', 'view', 'winCheck', 'utils'], function (_, SubG
             nextTurn: function () {
                 if (this.player === 'x') this.player = 'o';
                 else this.player = 'x';
+
+                view.updateTurn(this.player);
             }
         },
         gameOver;

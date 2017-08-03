@@ -46,6 +46,16 @@ define(['underscore', 'jquery', 'render', 'utils'], function (_, $, render, util
         $('#span_winner').text(winner.toUpperCase());
         $('#modal_win-display').modal('show');
     }
+
+    function updateTurn(player) {
+        if (player === "x") {
+            $('#turn-x').addClass('is-turn');
+            $('#turn-o').removeClass('is-turn');
+        } else {
+            $('#turn-o').addClass('is-turn');
+            $('#turn-x').removeClass('is-turn');
+        }
+    }
     
     return {
         clearGame: render.clearGameObjects,
@@ -62,6 +72,7 @@ define(['underscore', 'jquery', 'render', 'utils'], function (_, $, render, util
         renderWin: render.renderWin,
 
         // mainGame logic-related view methods
-        displayWinner: displayGameWinner
+        displayWinner: displayGameWinner,
+        updateTurn: updateTurn
     }
 });
