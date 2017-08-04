@@ -53,18 +53,21 @@ a.navbar-brand:focus {
 }
 
 #game-sidebar #turn-x {
+	background-color: #428bca;
 	border-right: 1px solid #2e6da4; 
 	
 	margin-right: -4px;
 }
 
 #game-sidebar #turn-o {
+	background-color: #d9534f;
+
 	border-bottom-right-radius: 4px;
 	border-top-right-radius: 4px;
 }
 
 .turn-label.is-turn {
-	background-color: #206090;
+	filter: brightness(90%);
 	font-weight: bolder;
 }
 
@@ -155,27 +158,34 @@ a.navbar-brand:focus {
 
 .x {
 	stroke-width: 5;
-	stroke: #000; /* blue if wanted: #1976d2; */
+	stroke: #428bca; /* blue if wanted: #1976d2; */
 }
 
 .o {
 	fill: none;
-	stroke: #000;
+	stroke: #d9534f;
 	stroke-width: 5;
 }
 
 .sg-x {
-	stroke: #000;
+	stroke: #428bca;
 	stroke-width: 10;
 }
 
 .sg-o {
 	fill: none;
-	stroke: #000;
+	stroke: #d9534f;
 	stroke-width: 10;
 }
 
-.gameWinLine {
+.game-win-line {
 	stroke-width: 15;
-	stroke: #000;
+}
+
+.game-win-line.winner-x {
+	stroke: #428bca;
+}
+
+.game-win-line.winner-o {
+	stroke: #d9534f;
 }

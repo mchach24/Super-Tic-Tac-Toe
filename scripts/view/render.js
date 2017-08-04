@@ -1,4 +1,4 @@
-define(['snapsvg'], function (Snap) {
+define(['snapsvg', 'utils'], function (Snap, utils) {
     //'use strict';
     
     /**
@@ -439,23 +439,60 @@ define(['snapsvg'], function (Snap) {
         }
     }
 
-    /*function renderWinLine(matrix, startCoordinates, endCoordinates) {
+
+    function renderWinLine(winner, startCoordinates, endCoordinates) {
+        var centerOfViewbox = { x: gameSVG.viewbox.width / 2, y: gameSVG.viewbox.height / 2 };
+
+        var scaler = Snap.matrix().scale(1.0, 1.0, centerOfViewbox.x, centerOfViewbox.y);
+
+        console.log(scaler.x(1800, 900), scaler.y(1800, 900));
+        console.log(startCoordinates, endCoordinates);
+
         var winLine = gameSVG.svg.el('line', {
-            x1: 0, y1: 0,
-            x2: 1800, y2: 1800,
-            class: 'gameWinLine'
+            x1: scaler.x(startCoordinates.x, startCoordinates.y), y1: scaler.y(startCoordinates.x, startCoordinates.y),
+            x2: scaler.x(endCoordinates.x, endCoordinates.y), y2: scaler.y(endCoordinates.x, endCoordinates.y),
+            class: 'game-win-line winner-' + winner
         });
 
         gameSVG.objects.gameObjects.add(winLine);
     }
 
-    function renderGameWin(type, startSubGame) {
-        var startCoordinates = {}, endCoordinates = {};
+    function renderGameWin(winner, type, startSubGame) {
+        var startCoordinates = { x: undefined, y: undefined }, 
+            endCoordinates = { x: undefined, y: undefined };
 
-        if (type === 'row')
+        if (type === 'row') {
+            startCoordinates.x = 0;
+            startCoordinates.y = utils.game.getRow(startSubGame) * gameSVG.viewbox.thirdOf('height', 1) - (0.5 * gameSVG.viewbox.thirdOf('height', 1));
 
-        renderWinLine();
-    }*/
+            endCoordinates.x = gameSVG.viewbox.width;
+            endCoordinates.y = startCoordinates.y;
+        } else if (type === 'column') {
+            startCoordinates.x = utils.game.getColumn(startSubGame) * gameSVG.viewbox.thirdOf('width', 1) - (0.5 * gameSVG.viewbox.thirdOf('width', 1));
+            startCoordinates.y = 0;
+
+            endCoordinates.x = startCoordinates.x;
+            endCoordinates.y = gameSVG.viewbox.height;
+        } else { // type === 'diagonal'
+            if (startSubGame === 0) {
+                startCoordinates.x = 0;
+                startCoordinates.y = 0;
+
+                endCoordinates.x = gameSVG.viewbox.width;
+                endCoordinates.y = gameSVG.viewbox.height;
+            } else if (startSubGame === 2) {
+                startCoordinates.x = gameSVG.viewbox.width;
+                startCoordinates.y = 0;
+
+                endCoordinates.x = 0;
+                endCoordinates.y = gameSVG.viewbox.height;
+            } else { // ( startSubGame !== 0 || startSubGame !== 2 ) 
+                throw "Error: a diagonal must start on either subGame position 0 or subGame position 2"
+            }
+        }
+
+        renderWinLine(winner, startCoordinates, endCoordinates);
+    }
     
     return {
         clearGameObjects: removeGameObjects,
@@ -471,6 +508,8 @@ define(['snapsvg'], function (Snap) {
 
         disableSubGame: disableSubGame,
         enableSubGame: enableSubGame,
-        renderWin: renderSubGameWin
+        renderSubGameWin: renderSubGameWin,
+
+        renderGameWin: renderGameWin 
     };
 });

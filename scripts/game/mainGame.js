@@ -122,10 +122,13 @@ define(['underscore', 'SubGame', 'view', 'winCheck', 'utils'], function (_, SubG
             return nestedSubGameWinMap;
         })();
 
-        var gameWinner = winCheck.check(boardMap);
+        console.log(boardMap);
 
-        if (gameWinner) {
-            view.displayWinner(gameWinner);
+        var win = winCheck.check(boardMap);
+
+        if (win) {
+            view.renderGameWin(win.winner, win.type, win.startSubGame);
+            view.displayWinner(win.winner);
             gameOver = true;
         }
     }

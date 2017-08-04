@@ -104,26 +104,31 @@ define(['utils'], function (utils) {
         switch (type) {
             case 'row': 
                 var squares = getRow(arg);
+                var startSubGame = (3 * (arg - 1));
                 break;
             case 'column':
                 var squares = getColumn(arg);
+                var startSubGame = arg - 1;
                 break;
             case 'diagonal':
                 var squares = getDiagonal(arg);
+                var startSubGame = arg - 1;
                 break;
             default: 
                 throw "Error: section type " + type + " not recognized.";
         }
         if (utils.arrayElementsAreEqual(squares)) {
             var winner = squares[0];
-            return winner;
+            return {
+                'winner': winner,
+                'type': type,
+                'startSubGame': startSubGame
+            }
         } else return false;
     }
 
 
     function checkWin(boardMapArray) {
-        //return 'x';
-
         boardMap = boardMapArray;
 
         var possibleWins = [
@@ -137,12 +142,14 @@ define(['utils'], function (utils) {
             sectionIsWon('diagonal', 3)
         ];
 
-        var winner = _(possibleWins).find(function (value) { return value !== false; });
+        var wonSection = _(possibleWins).find(function (value) { return value !== false; });
 
-        if (!winner) {
+        console.log(wonSection);
+
+        if (!wonSection) {
             return;
         } else {
-            return winner;
+            return wonSection;
         }
     }
     

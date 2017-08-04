@@ -55,19 +55,20 @@ define(['underscore', 'jquery', 'view', 'winCheck', 'utils'], function (_, $, vi
                     }
                 },
                 setWinner: function (player) {
+                    console.log(player);
                     isWon = true,
                     winner = player;
 
-                    view.renderWin(subGameInfo, player);
+                    view.renderSubGameWin(subGameInfo, player);
                     view.disableSubGame(subGameInfo.position);
                 },
                 getWinner: function () {
                     return winner;
                 },
                 checkWin: function () {
-                    var winner = winCheck.check(boardMap);
-                    if (winner) {
-                        this.setWinner(winner);
+                    var win = winCheck.check(boardMap);
+                    if (win) {
+                        this.setWinner(win.winner);
                     }
                 },
                 isWon: function () {

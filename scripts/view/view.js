@@ -1,5 +1,6 @@
 define(['underscore', 'jquery', 'render', 'utils'], function (_, $, render, utils) {
-    //'use strict';
+    
+    $('[data-toggle="tooltip"]').tooltip();
     
     function renderGame() {
         renderComponent('borders');
@@ -48,13 +49,28 @@ define(['underscore', 'jquery', 'render', 'utils'], function (_, $, render, util
     }
 
     function updateTurn(player) {
-        if (player === "x") {
+        $('.is-turn').removeClass('is-turn');
+        $('#turn-' + player).addClass('is-turn');
+
+        $('#turn-display').attr('title', 'It\'s player ' + player + '\'s turn')
+                            .tooltip('fixTitle')
+                            .tooltip('show');
+
+        /*if (player === "x") {
             $('#turn-x').addClass('is-turn');
             $('#turn-o').removeClass('is-turn');
+
+            $('#turn-display').attr('title', 'It\'s player X\'s turn')
+                            .tooltip('fixTitle')
+                            .tooltip('show');
         } else {
             $('#turn-o').addClass('is-turn');
             $('#turn-x').removeClass('is-turn');
-        }
+
+            $('#turn-display').attr('title', 'It\'s player O\'s turn')
+                            .tooltip('fixTitle')
+                            .tooltip('show');
+        }*/
     }
     
     return {
@@ -69,9 +85,10 @@ define(['underscore', 'jquery', 'render', 'utils'], function (_, $, render, util
         // subGame logic-related view methods
         disableSubGame: render.disableSubGame,
         enableSubGame: render.enableSubGame,
-        renderWin: render.renderWin,
+        renderSubGameWin: render.renderSubGameWin,
 
         // mainGame logic-related view methods
+        renderGameWin: render.renderGameWin,
         displayWinner: displayGameWinner,
         updateTurn: updateTurn
     }
