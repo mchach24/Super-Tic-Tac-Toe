@@ -19,9 +19,9 @@ define(['underscore', 'jquery', 'render', 'utils'], function (_, $, render, util
     }
 
     /**
-     * @param {string} player - x or o
-     * @param {Object} subGameInfo - subGameInfo object 
-     * @param {Object} squareInfo - squareInfo object
+     * @param {string} player x or o
+     * @param {Object} subGameInfo subGameInfo object 
+     * @param {Object} squareInfo squareInfo object
      */
     function renderMove(player, subGameInfo, squareInfo) {
         if (player === 'x' || player === 'o') {
@@ -49,28 +49,12 @@ define(['underscore', 'jquery', 'render', 'utils'], function (_, $, render, util
     }
 
     function updateTurn(player) {
-        $('.is-turn').removeClass('is-turn');
-        $('#turn-' + player).addClass('is-turn');
+        $('#turn').removeClass('turn-x').removeClass('turn-o');
+        $('#turn').addClass('turn-' + player).text(player);
 
         $('#turn-display').attr('title', 'It\'s player ' + player + '\'s turn')
-                            .tooltip('fixTitle')
-                            .tooltip('show');
+                            .tooltip('fixTitle');
 
-        /*if (player === "x") {
-            $('#turn-x').addClass('is-turn');
-            $('#turn-o').removeClass('is-turn');
-
-            $('#turn-display').attr('title', 'It\'s player X\'s turn')
-                            .tooltip('fixTitle')
-                            .tooltip('show');
-        } else {
-            $('#turn-o').addClass('is-turn');
-            $('#turn-x').removeClass('is-turn');
-
-            $('#turn-display').attr('title', 'It\'s player O\'s turn')
-                            .tooltip('fixTitle')
-                            .tooltip('show');
-        }*/
     }
     
     return {
@@ -79,7 +63,7 @@ define(['underscore', 'jquery', 'render', 'utils'], function (_, $, render, util
         getDomain: getDomain,
 
         renderGame: renderGame,
-        renderSubGame: _(renderComponent).partial('subGame'), // binds 'subGame' as argument
+        renderSubGame: _(renderComponent).partial('subGame'), // binds 'subGame' as argument of renderComponent
         renderMove: renderMove,
 
         // subGame logic-related view methods

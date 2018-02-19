@@ -35,8 +35,6 @@ a.navbar-brand:focus {
 
 #game-sidebar .label {
 	padding: 12px;
-
-	border-radius: 0;
 }
 
 #game-sidebar #turn-display {
@@ -44,31 +42,26 @@ a.navbar-brand:focus {
 }
 
 #game-sidebar #turn-display * {
-	flex: 0.333333 1 auto;
+	flex: 0.5 1 auto;
 }
 
-#game-sidebar #turn-span {
-	border-top-left-radius: 4px;
-	border-bottom-left-radius: 4px;
+
+
+#turn-label {
+	border-radius: 4px 0 0 4px;
+	border-right: 1px solid #2e6da4;
 }
 
-#game-sidebar #turn-x {
+#turn {
+	border-radius: 0 4px 4px 0;
+}
+
+#turn.turn-x {
 	background-color: #428bca;
-	border-right: 1px solid #2e6da4; 
-	
-	margin-right: -4px;
 }
 
-#game-sidebar #turn-o {
+#turn.turn-o {
 	background-color: #d9534f;
-
-	border-bottom-right-radius: 4px;
-	border-top-right-radius: 4px;
-}
-
-.turn-label.is-turn {
-	filter: brightness(90%);
-	font-weight: bolder;
 }
 
 #gameSVG {

@@ -2,12 +2,12 @@ define(['snapsvg', 'utils'], function (Snap, utils) {
     //'use strict';
     
     /**
-     * @prop svg - Snap svg object of #gameSVG, to be used in rendering elements
-     * @prop viewbox - an object containing nested properties and methods that apply to the viewbox of the svg:
-     *      @prop viewbox.width - width of viewbox
-     *      @prop viewbox.height - height of viewbox
-     *      @method viewbox.thirdOf - returns a third increment of either width or height, numerator determined by its corresponding argument
-     *      @method viewbox.ninthOf - same concept as thirdOf, but with 9 as the denominator
+     * @prop {Snap SVG Object} svg Snap svg object of #gameSVG, to be used in rendering elements
+     * @prop {Object} viewbox an object containing nested properties and methods that apply to the viewbox of the svg:
+     *      @prop {number} viewbox.width width of viewbox
+     *      @prop {number} viewbox.height height of viewbox
+     *      @method viewbox.thirdOf returns a third increment of either width or height, numerator determined by its corresponding argument
+     *      @method viewbox.ninthOf same concept as thirdOf, but with 9 as the denominator
      * @prop objects - an object of any elements that are rendered on the svg, in the case that they need be referenced later
      */
     var gameSVG = {
@@ -37,8 +37,8 @@ define(['snapsvg', 'utils'], function (Snap, utils) {
     /**
      * @function getDomain - returns an object called domain which contains the minimum and maximum values for each x and y in a subGame. subGame is determined by row# and column#
      * 
-     * @param {*} row - row# of subGame
-     * @param {*} column - column# of subGame
+     * @param {number} row - row# of subGame
+     * @param {number} column - column# of subGame
      */
     function getDomain(row, column) {
         var domain = {
@@ -129,8 +129,10 @@ define(['snapsvg', 'utils'], function (Snap, utils) {
     }
     
     /**
-     * @param {string} type - either 'inner', 'outer', or 'subGameIn, used to determine class of border
-     * @param {object} coordinates - an object with properties x1, y1, x2, y2
+     * @param {string} type either 'inner', 'outer', or 'subGameIn, used to determine class of border
+     * @param {object} coordinates an object with properties x1, y1, x2, y2
+     * 
+     * @returns SnapSVG element of border
      */
     function renderBorder(type, coordinates) {
         var borderClass;
@@ -256,109 +258,6 @@ define(['snapsvg', 'utils'], function (Snap, utils) {
     }
 
     /**
-     * @func createX creates an x, formed by two perpendicular lines
-     * 
-     * @param {SnapSVG matrix} matrix - a SnapSVG matrix, used for translating coordinates (based on the subGame and square positons) and scaling dimensions
-     * @param {number} squareDimensions.width - width of square
-     * @param {number} squareDimensions.height - height of square
-     * 
-     * @returns x, a SnapSVG group object (of the lines)
-     *
-    function createX(matrix, squareDimensions) {
-
-        var squareWidth = squareDimensions.width,
-            squareHeight = squareDimensions.height;
-
-        var x = gameSVG.svg.group(
-            gameSVG.svg.el('line', {
-                x1: matrix.x(0, 0),
-                y1: matrix.y(0, 0),
-                x2: matrix.x(squareWidth, squareHeight),
-                y2:  matrix.y(squareWidth, squareHeight)
-            }),
-            gameSVG.svg.el('line', {
-                x1: matrix.x(squareWidth, 0),
-                y1: matrix.y(squareWidth, 0),
-                x2: matrix.x(0, squareHeight),
-                y2: matrix.y(0, squareHeight)
-            })
-        ).addClass('x');
-
-        return x;
-    }*/
-    
-    function renderX(matrix, squareDimensions, type) {
-        if (!type) type = 'square';
-
-        var squareWidth = squareDimensions.width,
-            squareHeight = squareDimensions.height;
-
-        var x = gameSVG.svg.group(
-            gameSVG.svg.el('line', {
-                x1: matrix.x(0, 0),
-                y1: matrix.y(0, 0),
-                x2: matrix.x(squareWidth, squareHeight),
-                y2:  matrix.y(squareWidth, squareHeight)
-            }),
-            gameSVG.svg.el('line', {
-                x1: matrix.x(squareWidth, 0),
-                y1: matrix.y(squareWidth, 0),
-                x2: matrix.x(0, squareHeight),
-                y2: matrix.y(0, squareHeight)
-            })
-        );
-
-        var xClass = type === 'square' ? 'x' : 'sg-x';
-
-        x.addClass(xClass);
-
-        gameSVG.objects.gameObjects.add(x);
-    }
-
-    /**
-     * @func createO - creates an o, simply a hollow circle (hollowness done by CSS)
-     * 
-     * @param {SnapSVG matrix} matrix - a SnapSVG matrix, used for translating coordinates (based on the subGame and square positons) and scaling dimensions
-     * @param {number} squareDimensions.width - width of square
-     * @param {number} squareDimensions.height - height of square
-     * @param {number} centerOrigin.x - x coordinate of the center origin of the square
-     * @param {number} centerOrigin.y - y coordinate of the center origin of the square
-     *
-    function createO(matrix, squareDimensions, centerOrigin) {
-        var radius = squareDimensions.width / 2;
-
-        var o = gameSVG.svg.group(
-            gameSVG.svg.el('circle', {
-                cx: matrix.x(centerOrigin.x, centerOrigin.y),
-                cy: matrix.y(centerOrigin.x, centerOrigin.y),
-                r: matrix.split().scalex * radius
-            })
-        ).addClass('o');
-
-        return o;
-    }*/
-
-    function renderO(matrix, squareDimensions, centerOrigin, type) {
-        if (!type) type = 'square';
-
-        var radius = squareDimensions.width / 2;
-
-        var o = gameSVG.svg.group(
-            gameSVG.svg.el('circle', {
-                cx: matrix.x(centerOrigin.x, centerOrigin.y),
-                cy: matrix.y(centerOrigin.x, centerOrigin.y),
-                r: matrix.split().scalex * radius
-            })
-        )
-
-        var oClass = type === 'square' ? 'o' : 'sg-o';
-
-        o.addClass(oClass);
-
-        gameSVG.objects.gameObjects.add(o);
-    }
-
-    /**
      * @func renderGameObject - serves as a proxy for rendering an x or o, does some setup code, creates matrix for translating and scaling to fit an x or o on the board in the correct spot and with correct size
      * 
      * @param {string} player - 'x' or 'o'
@@ -400,6 +299,101 @@ define(['snapsvg', 'utils'], function (Snap, utils) {
             renderO(matrix, squareDimensions, centerOrigin);
         }
 
+    }
+
+    /**
+     * @func createX creates an x, formed by two perpendicular lines
+     * 
+     * @param {SnapSVG matrix} matrix - a SnapSVG matrix, used for translating coordinates (based on the subGame and square positons) and scaling dimensions
+     * @param {number} squareDimensions.width - width of square
+     * @param {number} squareDimensions.height - height of square
+     * 
+     * @returns x, a SnapSVG group object (of the lines)
+     *
+    function createX(matrix, squareDimensions) {
+
+        var squareWidth = squareDimensions.width,
+            squareHeight = squareDimensions.height;
+
+        var x = gameSVG.svg.group(
+            gameSVG.svg.el('line', {
+                x1: matrix.x(0, 0),
+                y1: matrix.y(0, 0),
+                x2: matrix.x(squareWidth, squareHeight),
+                y2:  matrix.y(squareWidth, squareHeight)
+            }),
+            gameSVG.svg.el('line', {
+                x1: matrix.x(squareWidth, 0),
+                y1: matrix.y(squareWidth, 0),
+                x2: matrix.x(0, squareHeight),
+                y2: matrix.y(0, squareHeight)
+            })
+        ).addClass('x');
+
+        return x;
+    }*/
+    
+    /**
+     * @func renderX renders an X, either for a whole subGame after it is won, or for an individual square within a subGame
+     * 
+     * @param {SnapSVG Matrix} matrix relative scope of the x within the SVG
+     * @param {Object} squareDimensions relative max x and y (width and height) within the matrix
+     * @param {string} type OPTIONAL 'square' or null if small-x, 'subGame' if big-x
+     */
+    function renderX(matrix, squareDimensions, type) {
+        if (!type) type = 'square'; // optional type paramter. Default value 'square'
+
+        var squareWidth = squareDimensions.width,
+            squareHeight = squareDimensions.height;
+
+        var x = gameSVG.svg.group(
+            gameSVG.svg.el('line', {
+                x1: matrix.x(0, 0),
+                y1: matrix.y(0, 0),
+                x2: matrix.x(squareWidth, squareHeight),
+                y2:  matrix.y(squareWidth, squareHeight)
+            }),
+            gameSVG.svg.el('line', {
+                x1: matrix.x(squareWidth, 0),
+                y1: matrix.y(squareWidth, 0),
+                x2: matrix.x(0, squareHeight),
+                y2: matrix.y(0, squareHeight)
+            })
+        );
+
+        var xClass = type === 'square' ? 'x' : 'sg-x';
+
+        x.addClass(xClass);
+
+        gameSVG.objects.gameObjects.add(x);
+    }
+
+    /**
+     * @func renderO renders an O, either for a whole subGame after it is won, or for an individual square within a subGame
+     * 
+     * @param {SnapSVG Matrix} matrix relative scope (coordinates) of the o within the SVG
+     * @param {Object} squareDimensions relative maximum x and y (width and height) within the matrix
+     * @param {Object} centerOrigin x and y values of the center/origin of the square
+     * @param {string} type OPTIONAL 'square' or null if small-o. 'subGame' if big-x
+     */
+    function renderO(matrix, squareDimensions, centerOrigin, type) {
+        if (!type) type = 'square'; // default value of parameter: 'square'
+
+        var radius = squareDimensions.width / 2;
+
+        var o = gameSVG.svg.group(
+            gameSVG.svg.el('circle', {
+                cx: matrix.x(centerOrigin.x, centerOrigin.y),
+                cy: matrix.y(centerOrigin.x, centerOrigin.y),
+                r: matrix.split().scalex * radius
+            })
+        )
+
+        var oClass = type === 'square' ? 'o' : 'sg-o';
+
+        o.addClass(oClass);
+
+        gameSVG.objects.gameObjects.add(o);
     }
 
     function disableSubGame(position) {
