@@ -9,6 +9,7 @@ Libraries/Frameworks:
 
 # Rules of 9x9 Tic Tac Toe
 
+See [https://en.wikipedia.org/wiki/Ultimate_tic-tac-toe](https://en.wikipedia.org/wiki/Ultimate_tic-tac-toe)
 
 # Project Details
 
