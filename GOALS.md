@@ -58,3 +58,5 @@ So this is time to express my resentment for how my old self designed this web a
 4. Find a different SVG library or create own
 
     It wouldn't be too far off to create a basic SVG library for just my needs... would certainly be an interesting challenge. But there are already other libraries out there, better than SnapSVG, that should suit my needs.
+    
+5. And of course use NPM for libraries, etc.
