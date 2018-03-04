@@ -50,6 +50,7 @@
                         <span class="label label-default" id="turn-label">Turn:</span>
                         <span class="label label-primary turn-x" id="turn">x</span>
                     </li>
+                    <li><button type="menu" class="btn btn-default" data-toggle="modal" data-target="#modal_rules">Rules</button></li>
                 </ul>
 
             </div>
@@ -59,22 +60,39 @@
             </svg>
         </div>
 
-        <div id="modal_win-display" class="modal fade">
+        <div class="modal fade" id="modal_win-display">
             <div class="modal-dialog">
                 <div class="modal-content">
-                     <div class="modal-header">
+                    <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title"><span id="span_winner"></span> has won!</h4>
                     </div>
-                    <!--<div class="modal-body">
-                        <p>One fine body&hellip;</p>
-                    </div>-->
                     <div class="modal-footer">
                         <button id="btn_close-win-modal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary btn_play-again" data-dismiss="modal">Play Again</button>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="modal" id="modal_rules">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Rules</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body" id="rules-body">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn_close-win-modal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+
+
         </div>
     </body>
 </html>
