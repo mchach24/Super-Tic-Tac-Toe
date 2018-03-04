@@ -8,8 +8,6 @@ Instead of a single 3x3 with a total of 9 squares, there is a 3x3 grid in which 
 
 It's 9 simultaneous tic tac toe games with one simple main mechanic to tie them together: where you play determines where your opponent is limited to play on their next turn.
 
-![Starting Board](/docs/img/empty-board.png?raw=true "Starting Board")
-
 ## Objective
 
 Just like in vanilla Tic Tac Toe, the objective is to get 3 x's or o's in a row, column, or diagonal. However, in Super Tic Tac Toe, the player must get three of the sub-games within the big 3x3 to win. This requires the player to first get three small squares within a small 3x3 grid.
