@@ -12,7 +12,8 @@ requirejs.config({
         'jquery': "../lib/jquery_3.2.1/jquery-3.2.1.min",
         'bootstrap': "../lib/bootstrap_3.3.7/js/bootstrap.min",
 		'snapsvg': "../lib/snap.svg_0.5.1/snap.svg-min",
-		'underscore': "../lib/underscore.js_1.8.3/underscore-min",
+        'underscore': "../lib/underscore.js_1.8.3/underscore-min",
+        'showdown': "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min",
         
 		// scripts/
             // game/
@@ -22,15 +23,18 @@ requirejs.config({
             // view/
         'view': "view/view",
         'render': "view/render",
+        
             // controller/
         'listener': "controller/listener",
         'controller': "controller/controller",
             // lib/
-        'utils': 'lib/utils'
+        'utils': 'lib/utils',
+
+        'rules': 'rules'
     }
 });
 
 /*                         not sure where to load listener module yet */
-require(['underscore', 'controller', 'listener', 'bootstrap'], function(_, controller) {
+require(['underscore', 'controller', 'listener', 'bootstrap', 'rules'], function(_, controller) {
     'use strict';
 });

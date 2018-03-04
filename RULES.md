@@ -1,4 +1,4 @@
-# Rules of Super Tic Tac Toe
+#Rules of Super Tic Tac Toe
 
 ## Introduction
 
