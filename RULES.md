@@ -8,7 +8,7 @@ Instead of a single 3x3 with a total of 9 squares, there is a 3x3 grid in which 
 
 It's 9 simultaneous tic tac toe games with one simple main mechanic to tie them together: where you play determines where your opponent is limited to play on their next turn.
 
-![image 1](URL)
+![Starting Board](/docs/img/empty-board.png?raw=true "Starting Board")
 
 ## Objective
 
