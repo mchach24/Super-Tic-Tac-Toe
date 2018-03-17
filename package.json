@@ -1,0 +1,26 @@
+{
+  "name": "super-tic-tac-toe",
+  "version": "1.0.0",
+  "description": "Super Tic Tac Toe: a 9x9 revamp of Tic Tac Toe with added mechanics to implement more strategy" 
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "svg.js": "^2.6.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mchach24/Super-Tic-Tac-Toe.git"
+  },
+  "author": "Matthew Hachten",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mchach24/Super-Tic-Tac-Toe/issues"
+  },
+  "homepage": "https://github.com/mchach24/Super-Tic-Tac-Toe#readme"
+}
