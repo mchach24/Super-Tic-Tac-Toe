@@ -1,0 +1,7 @@
+# Build
+dist/
+dist/*
+
+# Dependency directory
+node_modules
+.env
