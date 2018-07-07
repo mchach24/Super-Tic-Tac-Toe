@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+        
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+
+        <meta name="description" content="Super Tic Tac Toe is a revamp of tic tac toe (or knots and crosses) that adds more strategy by using a 9x9 grid, composed of 9 divided 3x3 grids of tic tac toe games">
+
+        <meta name="robots" content="index, nofollow">
+        <meta name="googlebot" content="index, nofollow">
+
+
+        <title>Super Tic Tac Toe</title>
+        
+        <!-- bootstrap -->
+        <link href="lib/bootstrap_3.3.7/css/bootstrap.css" rel="stylesheet"/>
+        
+        <!-- project-specific CSS -->
+        <link href="css/main.css" rel="stylesheet"/>
+        
+        <!-- this is the data-main entry point for requirejs -->        
+        <script data-main="scripts/main" src="lib/require.js_2.3.3/require.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default" id="navigation-bar">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Super Tic Tac Toe</a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-form navbar-left form-group">
+                        <button type="menu" class="btn btn-primary btn_play-again" id="nav_play-again">Play Again</button>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="https://github.com/mchach24/Super-Tic-Tac-Toe/" target="_blank"><b>See GitHub Repository</b></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container-fluid" id="game-container">
+            <div id="game-sidebar">
+                <ul>
+                    <li><button type="menu" class="btn btn-primary btn_play-again">Play Again</button></li>
+                    <li id="turn-display" data-toggle="tooltip" data-title="It's player X's turn" data-placement="bottom">
+                        <span class="label label-default" id="turn-label">Turn:</span>
+                        <span class="label label-primary turn-x" id="turn">x</span>
+                    </li>
+                    <li><button type="menu" class="btn btn-default" data-toggle="modal" data-target="#modal_rules">Rules</button></li>
+                </ul>
+
+            </div>
+
+            <svg id="gameSVG" viewBox="0 0 1800 1800" preserveAspectRatio="xMidYMid meet">
+				
+            </svg>
+        </div>
+
+        <div class="modal fade" id="modal_win-display">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"><span id="span_winner"></span> has won!</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn_close-win-modal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary btn_play-again" data-dismiss="modal">Play Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal_rules">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Rules</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body" id="rules-body">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn_close-win-modal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </body>
+</html>

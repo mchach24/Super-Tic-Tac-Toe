@@ -4,8 +4,21 @@ import path from "path";
 
 dotenv.config({ path: "./.env" });
 
-const app = express();
+class App {
+    public express: express.Application;
 
-app.get("/", (req, res) => res.send("Hello Word"));
+    constructor() {
+        this.express = express();
+        this.mountRoutes();
+    }
 
-export default app;
+    private mountRoutes(): void {
+        const router = express.Router();
+        router.use("/play",
+            express.static(path.join(__dirname, "public")),
+        );
+        this.express.use("/", router);
+    }
+}
+
+export default new App().express;
