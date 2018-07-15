@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import path from "path";
 
-dotenv.config({ path: "./.env" });
+dotenv.config();
 
 class App {
     public express: express.Application;
@@ -14,9 +14,9 @@ class App {
 
     private mountRoutes(): void {
         const router = express.Router();
-        router.use("/play",
-            express.static(path.join(__dirname, "public")),
-        );
+
+        router.use("/", express.static(path.join(__dirname, "public")));
+
         this.express.use("/", router);
     }
 }
