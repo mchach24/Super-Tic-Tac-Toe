@@ -56,14 +56,27 @@
                 "variable-declaration": "onespace"
             }
         ],
-        "no-console": [
-            false
-        ],
+        "no-console": {
+            "severity": "warning"
+        },
         "no-internal-module": true,
         "no-trailing-whitespace": true,
         "no-null-keyword": true,
         "prefer-const": true,
-        "jsdoc-format": true
+        "jsdoc-format": true,
+        "trailing-comma": [
+            true,
+            {
+                "multiline": "always",
+                "singleline": "never"
+            }
+        ],
+        "triple-equals": [
+            true,
+            "allow-null-check",
+            "allow-undefined-check"
+        ]
+        
     },
     "rulesDirectory": []
 }

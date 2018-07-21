@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es6",                          
     "module": "commonjs",                     
+    "target": "es6",                          
     "sourceMap": true,                        
     "outDir": "dist",
     "strict": true,                           
@@ -12,12 +12,16 @@
       "*": [
         "node_modules*",
         "srctypes*"
-      ]
+      ],      
+      "@client/*":  ["src/client/*"],
+      "@game/*":    ["src/client/game/*"],
+
+      "@server/*":  ["src/server/*"]
     },
+    "jsx": "react",
     "esModuleInterop": true
   },
   "include": [
-    "src*",
-    "src**/*"
+    "src/server/**/*",
   ]
 }
