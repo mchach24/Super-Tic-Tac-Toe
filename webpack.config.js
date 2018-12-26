@@ -1,6 +1,7 @@
 const path                  = require('path');
 const CopyWebpackPlugin     = require('copy-webpack-plugin');
 const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
+const TsconfigPathsPlugin   = require('tsconfig-paths-webpack-plugin');
 const webpack               = require('webpack');
 
 const devMode = process.env.NODE_ENV !== 'production';
@@ -30,6 +31,11 @@ const WebpackConfig = {
         ]
     },
     resolve: {
+        plugins: [
+            new TsconfigPathsPlugin({
+                configFile: 'src/client/tsconfig.json',
+            }),
+        ],
         extensions: ['.tsx', '.ts', '.js']
     },
     plugins: [

@@ -10,12 +10,15 @@
     "noImplicitAny":    false,
     "removeComments":   true,
     "paths": {
-      "@client/*":  ["src/client/*"],
 
-      "@server/*":  ["src/server/*"]
+      "@modules/*": ["modules/*"],
+
+      "@web/*":     ["modules/web/*"],
+      "@game/*":    ["modules/game/*"],
+      "@chat/*":    ["modules/chat/*"],
+
     },
+    "jsx": "react",
+    "esModuleInterop": true
   },
-  "include": [
-    "src/server/*",
-  ]
 }

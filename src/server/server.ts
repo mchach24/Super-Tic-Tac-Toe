@@ -1,30 +1,26 @@
-import dotenv from 'dotenv';
-import express from 'express';
-import path from 'path';
-import io from 'socket.io';
+import * as dotenv      from 'dotenv';
+import * as express     from 'express';
+// import http         from 'http';
+// import path         from 'path';
+import * as socketIO    from 'socket.io';
+import chat             from './socket/chat';
 
 dotenv.config();
 
 const app = express();
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT);
 
 /*******************************************************************
 ATTACH ROUTES
 *******************************************************************/
-(async () => {
+(() => {
     const router = express.Router();
-
-    router.use(express.static(path.join(__dirname, "..", "client")));
-
-    router.all("/*", (req: express.Request, res: express.Response, next: express.NextFunction) => {
-        res.sendFile('index.html');
-    });
 
     app.use("/", router);
 })();
 
-app.listen(app.get('port'), (err: Error) => {
+const server = app.listen(app.get('port'), (err: Error) => {
     if (err) {
         console.log(err);
     }
@@ -36,3 +32,7 @@ app.listen(app.get('port'), (err: Error) => {
     );
     console.log("  Press CTRL-C to stop\n");
 });
+
+const io = socketIO(server);
+
+chat(io);

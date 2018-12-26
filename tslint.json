@@ -5,6 +5,14 @@
     ],
     "jsRules": {},
     "rules": {
+        "align": [
+            true,
+            "arguments",
+            "elements",
+            "members",
+            "parameters",
+            "statements"
+        ],
         "class-name": true,
         "comment-format": [
             true,
@@ -30,6 +38,7 @@
             "always",
             "ignore-bound-class-methods"
         ],
+        "import-spacing": false,
         "whitespace": [
             true,
             "check-branch",
@@ -61,7 +70,7 @@
         },
         "no-internal-module": true,
         "no-trailing-whitespace": true,
-        "no-null-keyword": true,
+        "no-null-keyword": false,
         "prefer-const": true,
         "jsdoc-format": true,
         "trailing-comma": [

@@ -1,13 +1,23 @@
-/*
-import * as React from 'react';
-import Game from './game/game';
 
-export class App extends React.Component {
+import Chat         from '@modules/chat/chat';
+import * as React   from 'react';
+import ReactDOM     from 'react-dom';
+
+export class App extends React.Component<{}> {
+
+    constructor(props) {
+        super(props);
+
+    }
 
     public render() {
         return (
-            <Game/>
+            <Chat />
         );
     }
 }
-*/
+
+ReactDOM.render(
+    <App />,
+    document.getElementById('root'),
+);
