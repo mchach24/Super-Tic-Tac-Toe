@@ -1,5 +1,5 @@
-import { GameLayout }   from '../modules/web/game-layout';
-import { WebLander }    from '../modules/web/web-lander';
+import { GameLayout }   from '@modules/web/game-layout';
+import { Home  }    from '@modules/web/home';
 
 export const routes = {
     gameLayout: {
@@ -8,7 +8,7 @@ export const routes = {
         path: '/play',
     },
     webLander: {
-        component: WebLander,
+        component: Home,
         exact: true,
         path: '/',
     },

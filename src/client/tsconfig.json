@@ -5,7 +5,7 @@
     "target":           "es6",
     "sourceMap":        true,
     "baseUrl":          ".",
-    "outDir":           "dist/server",
+    "outDir":           "dist/client",
     "strict":           true,
     "noImplicitAny":    false,
     "removeComments":   true,
@@ -16,6 +16,14 @@
       "@web/*":     ["modules/web/*"],
       "@game/*":    ["modules/game/*"],
       "@chat/*":    ["modules/chat/*"],
+      
+      "@primitives/*": ["primitives/*"],
+
+      "@assets/*":    ["assets/*"],
+
+      "@lib/*":       ["lib/*"],
+      "@globals/*":   ["lib/globals/*"],
+      "@util/*":      ["lib/util/*"],
 
     },
     "jsx": "react",

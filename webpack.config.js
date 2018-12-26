@@ -10,9 +10,13 @@ const WebpackConfig = {
     entry: './src/client/app.tsx',
     output: {
         filename: 'main.js',
-        path: path.resolve(__dirname, 'dist/client')
+        path: path.resolve(__dirname, 'dist/client'),
+        publicPath: '/'
     },
     devtool: 'inline-source-map',
+    devServer: {
+        historyApiFallback: true,
+    },
     module: {
         rules: [
             {
@@ -40,7 +44,8 @@ const WebpackConfig = {
     },
     plugins: [
         new CopyWebpackPlugin([
-            { from: 'index.html', to: 'index.html' }
+            { from: 'index.html', to: 'index.html' },
+            { from: 'assets/',    to: 'assets/' },
         ], {
             context: 'src/client/',
             debug: 'info',

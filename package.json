@@ -4,7 +4,7 @@
   "description": "Super Tic Tac Toe: a 9x9 revamp of Tic Tac Toe with added mechanics to implement more strategy",
   "main": "dist/server/server.js",
   "scripts": {
-    "dev": "concurrently \"tsc --watch\" \"nodemon dist/server/server.js --delay 5000\" \"npm run start-webpack\"",
+    "dev": "concurrently \"tsc --watch\" \"npm run start-webpack\"",
     "start-server": "tsc && npm run serve",
     "start-webpack": "webpack-dev-server --config ./webpack.config.js --mode development",
     "serve": "node dist/server/server.js",
@@ -20,12 +20,10 @@
   "dependencies": {
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
-    "lodash": "^4.17.10",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
     "socket.io": "^2.1.1",
-    "svg.js": "^2.6.4",
     "ts-loader": "^4.4.2",
     "typescript": "^2.9.2",
     "webpack": "^4.16.1"
@@ -43,6 +41,7 @@
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.0",
     "nodemon": "^1.17.5",
+    "react-test-renderer": "^16.7.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "ts-node": "^7.0.0",

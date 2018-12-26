@@ -1,4 +1,7 @@
-import * as React from 'react';
+
+import * as React           from 'react';
+import Icon                 from 'ui/icon/icon';
+import Icons                from 'ui/icon/icons';
 import chatClientController from './chat-api';
 
 export default class Chat extends React.Component<{}> {
@@ -11,7 +14,7 @@ export default class Chat extends React.Component<{}> {
 
     public render() {
         return (
-            <button>Open Chat</button>
+            <Icon icon={ Icons.Message } />
         );
     }
 }

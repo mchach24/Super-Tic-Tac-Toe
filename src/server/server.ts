@@ -1,7 +1,7 @@
 import * as dotenv      from 'dotenv';
 import * as express     from 'express';
 // import http         from 'http';
-// import path         from 'path';
+import * as path        from 'path';
 import * as socketIO    from 'socket.io';
 import chat             from './socket/chat';
 
@@ -11,14 +11,9 @@ const app = express();
 
 app.set('port', process.env.PORT);
 
-/*******************************************************************
-ATTACH ROUTES
-*******************************************************************/
-(() => {
-    const router = express.Router();
-
-    app.use("/", router);
-})();
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'), (err: Error) => res.status(500).send(err));
+});
 
 const server = app.listen(app.get('port'), (err: Error) => {
     if (err) {
