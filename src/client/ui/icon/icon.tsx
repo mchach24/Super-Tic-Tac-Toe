@@ -11,6 +11,7 @@ import Icons     from './icons';
 interface IconProps {
     icon: Icons;
     color?: Color;
+    className?: string;
 }
 
 export class Icon extends React.Component<IconProps> {
@@ -27,8 +28,14 @@ export class Icon extends React.Component<IconProps> {
 
         let className = 'icon';
 
-        if (Util.isNotNil(this.props.color)) {
-            className += ` color-${this.props.color}`;
+        const props = this.props;
+
+        if (Util.isNotNil(props.className)) {
+            className += props.className;
+        }
+
+        if (Util.isNotNil(props.color)) {
+            className += ` color-${props.color}`;
         }
 
         return (

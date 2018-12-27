@@ -38,4 +38,4 @@ enum Icons {
 
 // EXPORTS
 
-export default Icons;
+export { Icons };

@@ -1,8 +1,10 @@
 
+import { Util } from '@lib/util/util';
 import * as React from 'react';
 
 interface BillboardProps {
-    header: string;
+    className?: string;
+    header?: string;
 }
 
 export class Billboard extends React.Component<BillboardProps> {
@@ -12,14 +14,18 @@ export class Billboard extends React.Component<BillboardProps> {
     }
 
     public render() {
-        const className = 'billboard';
+        let className = 'billboard';
 
-        const { header } = this.props;
+        const props = this.props;
+
+        if (Util.isNotNil(props.className)) {
+            className += props.className;
+        }
 
         return (
             <div className={ className }>
-                <h1 className='billboard-header'>{ header }</h1>
-                { this.props.children }
+                <h1 className='billboard-header'>{ props.header }</h1>
+                { props.children }
             </div>
         );
     }
