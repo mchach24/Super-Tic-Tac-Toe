@@ -4,14 +4,16 @@ const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 const TsconfigPathsPlugin   = require('tsconfig-paths-webpack-plugin');
 const webpack               = require('webpack');
 
-const devMode = process.env.NODE_ENV !== 'production';
+const development = process.env.NODE_ENV !== 'production';
 
-const WebpackConfig = {
-    entry: './src/client/app.tsx',
+module.exports = {
+    entry: {
+        app: './src/client/app.tsx',
+    },
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist/client'),
-        publicPath: '/'
+        publicPath: '/',
     },
     devtool: 'inline-source-map',
     devServer: {
@@ -21,14 +23,17 @@ const WebpackConfig = {
         rules: [
             {
                 test: /\.tsx?$/,
+                exclude: /node_modules/,
                 use: 'ts-loader',
-                exclude: /node_modules/
             },
             {
-                test: /\.s?css$/,
+                test: /\.jsx?$/,
+                exclude: /node_modules(\/|\\)(?!(@feathersjs|debug))/,
+                use: 'babel-loader',
+            },
+            {
+                test: /\.scss$/,
                 use: [
-                    'style-loader',
-                    'css-loader',
                     'sass-loader',
                 ]
             }
@@ -54,10 +59,8 @@ const WebpackConfig = {
             filename: 'main.css'
         }),
         new webpack.DefinePlugin({
-            'environment.production': JSON.stringify(!devMode),
-            'environment.development': JSON.stringify(devMode),
+            'environment.production': JSON.stringify(!development),
+            'environment.development': JSON.stringify(development),
         })
     ]
 }
-
-module.exports = WebpackConfig;
