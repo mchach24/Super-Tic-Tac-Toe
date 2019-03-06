@@ -6,28 +6,45 @@ const webpack               = require('webpack');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
-const WebpackConfig = {
-    entry: './src/client/app.tsx',
+module.exports = {
+    entry: {
+        app: './src/client/app.tsx',
+    },
+    mode: devMode ? 'development' : 'production',
     output: {
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'dist/client')
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist/client'),
+        publicPath: '/',
     },
     devtool: 'inline-source-map',
+    devServer: {
+        contentBase: './client'
+    },
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
+                exclude: /node_modules/,
                 use: 'ts-loader',
-                exclude: /node_modules/
             },
             {
-                test: /\.s?css$/,
+                test: /\.jsx?$/,
+                // exclude: /node_modules(\/|\\)(?!(@feathersjs|debug))/,
+                exclude: /node_modules/,
+                use: 'babel-loader',
+            },
+            {
+                test: /\.scss$/,
                 use: [
-                    'style-loader',
-                    'css-loader',
                     'sass-loader',
                 ]
-            }
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    'file-loader'
+                ]
+            },
         ]
     },
     resolve: {
@@ -40,19 +57,17 @@ const WebpackConfig = {
     },
     plugins: [
         new CopyWebpackPlugin([
-            { from: 'index.html', to: 'index.html' }
+            { from: 'index.html', to: 'index.html' },
         ], {
             context: 'src/client/',
             debug: 'info',
         }),
-        new MiniCssExtractPlugin({
+        /*new MiniCssExtractPlugin({
             filename: 'main.css'
-        }),
+        }),*/
         new webpack.DefinePlugin({
             'environment.production': JSON.stringify(!devMode),
             'environment.development': JSON.stringify(devMode),
         })
     ]
 }
-
-module.exports = WebpackConfig;

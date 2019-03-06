@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default class Game extends React.Component<undefined, undefined> {
+export default class Game extends React.Component<{}, {}> {
 
     constructor() {
-        super(undefined, undefined);
+        super({}, {});
     }
 }

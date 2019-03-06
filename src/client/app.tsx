@@ -1,18 +1,17 @@
 
-import Chat         from '@modules/chat/chat';
-import * as React   from 'react';
-import ReactDOM     from 'react-dom';
+import * as React from 'react';
+import ReactDOM from 'react-dom';
+import './assets/scss/main.scss';
 
-export class App extends React.Component<{}> {
+export class App extends React.Component {
 
-    constructor(props) {
+    constructor (props) {
         super(props);
-
     }
 
     public render() {
         return (
-            <Chat />
+            <h1>Hello world!</h1>
         );
     }
 }

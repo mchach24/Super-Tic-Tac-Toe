@@ -1,0 +1,10 @@
+
+@mixin colorStyles {
+    @each $colorList in $colors {
+        @each $colorName, $color in map-get($colors, $theme) {
+            .color-#{$colorName} {
+                background-color: $color;
+            }
+        }
+    }
+}
