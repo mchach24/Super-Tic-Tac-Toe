@@ -2,20 +2,28 @@
   "compilerOptions": {
     "module":           "commonjs",
     "moduleResolution": "node",
-    "target":           "es6",
+    "lib": [
+        "es7", "dom", "esnext.asynciterable"
+    ],
+    "target":           "es5",
     "sourceMap":        true,
     "baseUrl":          ".",
-    "outDir":           "dist/server",
+    "outDir":           "dist/",
     "strict":           true,
-    "noImplicitAny":    false,
+    "noImplicitReturns":true,
+    "noImplicitThis":   true,
     "removeComments":   true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "paths": {
-      "@client/*":  ["src/client/*"],
+      "@client/*":  ["client/*"],
 
-      "@server/*":  ["src/server/*"]
+      "@backend/*":  ["backend/*"],
+
+      "@app-root/*": ["/*"],
     },
   },
   "include": [
-    "src/server/*",
-  ]
+    "src/server"
+  ],
 }

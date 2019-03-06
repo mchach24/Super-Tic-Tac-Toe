@@ -1,11 +1,41 @@
-# Super Tic Tac Toe: Version 2
-Tic Tac Toe, but played on a 9x9 grid, composed of 9 simultaneous tic tac toe boards, and with special rules. See https://en.wikipedia.org/wiki/Ultimate_tic-tac-toe for more info.
+# super-tic-tac-toe
 
-Libraries/Frameworks:
-- jQuery (version 3.2.1)
-- ~Bootstrap (version 3.3.7)~
-- ~require.js (version 2.3.3)~
-- ~snap.svg (version 0.5.1)~
-- NodeJS
+> Super Tic Tac Toe: a 9x9 revamp of Tic Tac Toe with more strategic gameplay
 
-## See GOALS.md for more relevant information to version 2 at this time
+## About
+
+This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
+
+## Getting Started
+
+Getting up and running is as easy as 1, 2, 3.
+
+1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
+2. Install your dependencies
+
+    ```
+    cd path/to/super-tic-tac-toe; npm install
+    ```
+
+3. Start your app
+
+    ```
+    npm start?
+    ```
+
+## Testing
+
+Simply run `npm test` and all your tests in the `test/` directory will be run.
+
+
+## Changelog
+
+__0.1.0__
+
+- Initial release
+
+## License
+
+Copyright (c) 2018
+
+Licensed under the [MIT license](LICENSE).

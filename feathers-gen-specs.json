@@ -1,0 +1,23 @@
+{
+  "options": {
+    "ver": "1.0.0",
+    "inspectConflicts": false,
+    "semicolons": true,
+    "freeze": [],
+    "ts": true
+  },
+  "app": {
+    "environmentsAllowingSeedData": "test",
+    "seedData": true,
+    "name": "super-tic-tac-toe",
+    "description": "Super Tic Tac Toe: a 9x9 revamp of Tic Tac Toe with more strategic gameplay",
+    "src": "backend",
+    "packager": "npm@>= 3.0.0",
+    "providers": [
+      "rest",
+      "socketio"
+    ]
+  },
+  "services": {},
+  "hooks": {}
+}

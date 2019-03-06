@@ -4,20 +4,21 @@ const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 const TsconfigPathsPlugin   = require('tsconfig-paths-webpack-plugin');
 const webpack               = require('webpack');
 
-const development = process.env.NODE_ENV !== 'production';
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
     entry: {
         app: './src/client/app.tsx',
     },
+    mode: devMode ? 'development' : 'production',
     output: {
-        filename: 'main.js',
+        filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist/client'),
         publicPath: '/',
     },
     devtool: 'inline-source-map',
     devServer: {
-        historyApiFallback: true,
+        contentBase: './client'
     },
     module: {
         rules: [
@@ -28,7 +29,8 @@ module.exports = {
             },
             {
                 test: /\.jsx?$/,
-                exclude: /node_modules(\/|\\)(?!(@feathersjs|debug))/,
+                // exclude: /node_modules(\/|\\)(?!(@feathersjs|debug))/,
+                exclude: /node_modules/,
                 use: 'babel-loader',
             },
             {
@@ -36,7 +38,13 @@ module.exports = {
                 use: [
                     'sass-loader',
                 ]
-            }
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    'file-loader'
+                ]
+            },
         ]
     },
     resolve: {
@@ -50,17 +58,16 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin([
             { from: 'index.html', to: 'index.html' },
-            { from: 'assets/',    to: 'assets/' },
         ], {
             context: 'src/client/',
             debug: 'info',
         }),
-        new MiniCssExtractPlugin({
+        /*new MiniCssExtractPlugin({
             filename: 'main.css'
-        }),
+        }),*/
         new webpack.DefinePlugin({
-            'environment.production': JSON.stringify(!development),
-            'environment.development': JSON.stringify(development),
+            'environment.production': JSON.stringify(!devMode),
+            'environment.development': JSON.stringify(devMode),
         })
     ]
 }

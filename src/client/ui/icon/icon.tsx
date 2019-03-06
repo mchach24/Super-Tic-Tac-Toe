@@ -2,7 +2,7 @@
 import { Color } from '@lib/globals/colors';
 import { Util }  from '@lib/util/util';
 import React     from 'react';
-import Icons     from './icons';
+import { Icons } from './icons';
 
 /* tslint:disable max-line-length */
 
