@@ -27,6 +27,7 @@
             "spaces"
         ],
         "interface-name": false,
+        "object-literal-sort-keys": false,
         "one-line": [
             true,
             "check-open-brace",
@@ -43,7 +44,7 @@
             "always",
             "ignore-bound-class-methods"
         ],
-        "import-spacing": false,
+        "import-spacing": true,
         "whitespace": [
             true,
             "check-branch",
@@ -84,13 +85,7 @@
         "prefer-const": true,
         "jsdoc-format": true,
         "ordered-imports": false,
-        "trailing-comma": [
-            true,
-            {
-                "multiline": "always",
-                "singleline": "never"
-            }
-        ],
+        "trailing-comma": false,
         "triple-equals": [
             true,
             "allow-null-check",

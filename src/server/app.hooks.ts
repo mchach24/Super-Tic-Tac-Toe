@@ -1,59 +1,34 @@
+// Application hooks that run for every service
+// Don't remove this comment. It's needed to format import lines nicely.
 
-// Application hooks that run for every service. (Can be re-generated.)
-import { HookMap, HooksObject } from '@feathersjs/feathers';
-import * as commonHooks from 'feathers-hooks-common';
-// !<DEFAULT> code: imports
-import log from './hooks/log';
-// !end
-
-// !<DEFAULT> code: used
-// tslint:disable-next-line:no-unused-variable
-const { iff } = commonHooks;
-// !end
-// !code: init // !end
-
-// tslint:disable object-literal-sort-keys trailing-comma
-const moduleExports: HooksObject = {
+export default {
   before: {
-    // !<DEFAULT> code: before
-    all: [ log() ],
+    all: [],
     find: [],
     get: [],
     create: [],
     update: [],
     patch: [],
     remove: []
-    // !end
   },
 
   after: {
-    // !<DEFAULT> code: after
-    all: [ log() ],
+    all: [],
     find: [],
     get: [],
     create: [],
     update: [],
     patch: [],
     remove: []
-    // !end
   },
 
   error: {
-    // !<DEFAULT> code: error
-    all: [ log() ],
+    all: [],
     find: [],
     get: [],
     create: [],
     update: [],
     patch: [],
     remove: []
-    // !end
-  },
-  // !code: moduleExports // !end
+  }
 };
-
-// !code: exports // !end
-export default moduleExports;
-
-// !code: funcs // !end
-// !code: end // !end

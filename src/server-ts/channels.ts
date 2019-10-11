@@ -1,7 +1,6 @@
-import { HookContext } from '@feathersjs/feathers';
-import { Application } from './declarations';
+import { App } from './app.interface';
 
-export default function (app: Application) {
+export default function (app: App) {
   if (typeof app.channel !== 'function') {
     // If no real-time functionality has been configured just return
     return;
@@ -25,7 +24,7 @@ export default function (app: Application) {
       // Add it to the authenticated user channel
       app.channel('authenticated').join(connection);
 
-      // Channels can be named anything and joined on any condition 
+      // Channels can be named anything and joined on any condition
 
       // E.g. to send real-time events only to admins use
       // if(user.isAdmin) { app.channel('admins').join(connection); }
@@ -39,12 +38,13 @@ export default function (app: Application) {
     }
   });
 
-  // eslint-disable-next-line no-unused-vars
-  app.publish((data: any, hook: HookContext) => {
-    // Here you can add event publishers to channels set up in `channels.js`
+  // tslint:disable-next-line:no-unused-variable
+  app.publish((data, hook) => {
+    // Here you can add event publishers to channels set up in `channels.ts`
     // To publish only for a specific event use `app.publish(eventname, () => {})`
 
-    console.log('Publishing all events to all authenticated users. See `channels.js` and https://docs.feathersjs.com/api/channels.html for more information.'); // tslint:disable-line
+    // tslint:disable-next-line
+    console.log('Publishing all events to all authenticated users. See `channels.ts` and https://docs.feathersjs.com/api/channels.html for more information.');
 
     // e.g. to publish all service events to all authenticated users use
     return app.channel('authenticated');
@@ -61,4 +61,4 @@ export default function (app: Application) {
   //     app.channel(`emails/${data.recipientEmail}`)
   //   ];
   // });
-};
+}

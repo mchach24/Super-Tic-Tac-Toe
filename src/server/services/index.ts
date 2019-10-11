@@ -1,17 +1,7 @@
+import { Application } from '../declarations';
+import users from './users/users.service';
+// Don't remove this comment. It's needed to format import lines nicely.
 
-// Configure the Feathers services. (Can be re-generated.)
-import { App } from '../app.interface';
-
-// !code: imports // !end
-// !code: init // !end
-
-// tslint:disable-next-line:no-unused-variable
-const moduleExports = (app: App) => {
-  // !code: func_return // !end
-};
-
-// !code: exports // !end
-export default moduleExports;
-
-// !code: funcs // !end
-// !code: end // !end
+export default function (app: Application) {
+  app.configure(users);
+}
