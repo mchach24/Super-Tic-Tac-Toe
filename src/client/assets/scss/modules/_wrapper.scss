@@ -1,0 +1,16 @@
+
+.wrapper {
+    max-width: 75em;
+    min-width: 75vw;
+    margin: auto;
+
+    display: flex;
+}
+
+#main-wrapper {
+    flex-direction: column;
+}
+
+#game-wrapper {
+    flex-direction: row;
+}

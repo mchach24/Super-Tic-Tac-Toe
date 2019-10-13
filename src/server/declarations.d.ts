@@ -2,7 +2,6 @@ import { Application as ExpressFeathers } from '@feathersjs/express';
 import { Service } from '@feathersjs/feathers';
 import '@feathersjs/transport-commons';
 
-// Webpack
 declare module '*webpack.config';
 
 // A mapping of service names to types. Will be extended in service files.

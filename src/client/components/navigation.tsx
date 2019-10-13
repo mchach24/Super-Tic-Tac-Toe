@@ -1,5 +1,5 @@
 
-import { Util } from '@util/util';
+import Util from '@lib/util';
 import * as React from 'react';
 
 // INTERFACES
@@ -10,9 +10,9 @@ interface NavProps {
 
 // COMPONENT
 
-export class Navigation extends React.Component<NavProps> {
+export default class Navigation extends React.Component<NavProps> {
 
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 

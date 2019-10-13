@@ -1,18 +1,18 @@
 
-import { TextColor } from '@globals/colors';
-import { Size } from '@globals/sizes';
-import { Util } from '@lib/util/util';
+import { TextColor } from '@lib/colors';
+import { Size } from '@lib/sizes';
+import Util from '@lib/util';
 import * as React from 'react';
+import ComponentProps from '@lib/component-props';
 
-interface TextProps {
+interface TextProps extends ComponentProps {
     size?: Size;
-    className?: string;
     color?: TextColor;
 }
 
-export class Text extends React.Component<TextProps> {
+export default class Text extends React.Component<TextProps> {
 
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 

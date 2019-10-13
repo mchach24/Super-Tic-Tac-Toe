@@ -1,17 +1,17 @@
 
-import { Color } from '@lib/globals/colors';
-import { Util } from '@lib/util/util';
+import { Color } from '@lib/colors';
+import Util from '@lib/util';
 import * as React from 'react';
+import ComponentProps from '@lib/component-props';
 
-interface ButtonProps {
-    className?: string;
+interface ButtonProps extends ComponentProps {
     color?: Color;
     onClick?: () => void;
 }
 
-export class Button extends React.Component<ButtonProps> {
+export default class Button extends React.Component<ButtonProps> {
 
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 
@@ -31,6 +31,6 @@ export class Button extends React.Component<ButtonProps> {
 
         return (
             <button className={ className } onClick={ onClick }>{ props.children }</button>
-        )
+        );
     }
 }

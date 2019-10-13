@@ -6,6 +6,7 @@ import * as cors from 'cors';
 
 import * as webpack from 'webpack';
 import * as webpackDevMiddleware from 'webpack-dev-middleware';
+// @ts-ignore
 import * as webpackConfig from '../../webpack.config';
 
 import feathers from '@feathersjs/feathers';

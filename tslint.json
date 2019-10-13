@@ -81,6 +81,7 @@
         "no-internal-module": true,
         "no-trailing-whitespace": true,
         "no-null-keyword": false,
+        "no-namespace": false,
         "max-line-length": [true, 140],
         "prefer-const": true,
         "jsdoc-format": true,

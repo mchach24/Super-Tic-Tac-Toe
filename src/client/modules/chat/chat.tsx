@@ -1,11 +1,11 @@
 
-import * as React           from 'react';
-import { Icon }             from 'ui/icon/icon';
-import { Icons }            from 'ui/icon/icons';
+import * as React from 'react';
+import Icon from 'components/icon/icon';
+import { Icons } from 'components/icon/icons';
 
 export default class Chat extends React.Component<{}> {
 
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 

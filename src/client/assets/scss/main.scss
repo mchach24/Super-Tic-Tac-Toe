@@ -1,10 +1,8 @@
 @import './constants/_exports';
-@import './functions/_exports';
 @import './mixins/_exports';
-@import './ui/_exports';
-@import './components/_exports';
 @import './modules/_exports';
 
 body {
-    // background-image: url(/assets/img/background/pattern.png);
+    margin: 0 auto;
+    background-color: white;
 }

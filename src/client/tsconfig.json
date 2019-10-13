@@ -1,25 +1,21 @@
 {
   "compilerOptions": {
     "baseUrl":          ".",
-    "outDir":           "dist/client",
     "paths": {
-
       "@modules/*": ["modules/*"],
 
       "@web/*":     ["modules/web/*"],
       "@game/*":    ["modules/game/*"],
       "@chat/*":    ["modules/chat/*"],
-      
-      "@primitives/*": ["primitives/*"],
 
       "@assets/*":    ["assets/*"],
 
       "@lib/*":       ["lib/*"],
-      "@globals/*":   ["lib/globals/*"],
-      "@util/*":      ["lib/util/*"],
-
     },
     "jsx": "react",
     "esModuleInterop": true
   },
+  "include": [
+    "../index.d.ts", "./"
+  ]
 }

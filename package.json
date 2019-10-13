@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev src/server",
-    "start": "node src/server",
+    "start": "ts-node src/server",
     "test": "npm run some-typescript-compile && npm run mocha",
     "mocha": "ts-mocha \"test/**/*.ts\" --recursive --exit",
     "webpack": "webpack-dev-server --open",
@@ -36,7 +36,7 @@
     "start-prod": "npm run build && concurrently -n server \"node dist/backend/index.js\""
   },
   "dependencies": {
-    "@feathers-plus/test-utils": "^0.3.5",
+    "@feathers-plus/test-utils": "^0.3.6",
     "@feathersjs/authentication": "^4.3.5",
     "@feathersjs/authentication-local": "^4.3.5",
     "@feathersjs/authentication-oauth": "^4.3.5",
@@ -48,6 +48,7 @@
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "cross-env": "^5.2.0",
+    "css-loader": "^3.2.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "feathers-hooks-common": "^4.20.0",
@@ -58,10 +59,10 @@
     "mongodb-core": "^3.1.9",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-router-dom": "^4.3.1",
     "sass-loader": "^7.1.0",
     "serve-favicon": "^2.5.0",
     "socket.io": "^2.2.0",
+    "style-loader": "^1.0.0",
     "ts-loader": "^4.5.0",
     "winston": "^3.1.0"
   },

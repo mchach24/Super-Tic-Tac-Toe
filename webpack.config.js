@@ -29,18 +29,19 @@ module.exports = {
             },
             {
                 test: /\.jsx?$/,
-                // exclude: /node_modules(\/|\\)(?!(@feathersjs|debug))/,
                 exclude: /node_modules/,
                 use: 'babel-loader',
             },
             {
-                test: /\.scss$/,
+                test: /\.s?css$/,
                 use: [
+                    'style-loader',
+                    'css-loader',
                     'sass-loader',
                 ]
             },
             {
-                test: /\.(png|svg|jpg|gif|html)$/,
+                test: /\.(png|svg|jpg|gif)$/,
                 use: [
                     'file-loader'
                 ]
@@ -62,9 +63,6 @@ module.exports = {
             context: 'src/client/',
             debug: 'info',
         }),
-        /*new MiniCssExtractPlugin({
-            filename: 'main.css'
-        }),*/
         new webpack.DefinePlugin({
             'environment.production': JSON.stringify(!devMode),
             'environment.development': JSON.stringify(devMode),
