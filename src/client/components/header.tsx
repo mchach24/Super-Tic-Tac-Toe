@@ -1,5 +1,8 @@
 import * as React from 'react';
 import Util from '@lib/util';
+import Text from './text';
+import { Size } from '@lib/sizes';
+import { Colors } from '@lib/colors';
 
 interface HeaderProps {
   className?: string;
@@ -24,7 +27,7 @@ export default class Header extends React.Component<HeaderProps> {
 
     return (
       <div className={ className }>
-        <h1>Super Tic Tac Toe</h1>
+        <Text size={ Size.Large } color={ Colors.Theme.Primary }>Super Tic Tac Toe</Text>
         {props.children}
       </div>
     );

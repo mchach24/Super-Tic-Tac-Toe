@@ -1,5 +1,5 @@
 
-import { TextColor } from '@lib/colors';
+import { Color } from '@lib/colors';
 import { Size } from '@lib/sizes';
 import Util from '@lib/util';
 import * as React from 'react';
@@ -7,7 +7,7 @@ import ComponentProps from '@lib/component-props';
 
 interface TextProps extends ComponentProps {
     size?: Size;
-    color?: TextColor;
+    color?: Color;
 }
 
 export default class Text extends React.Component<TextProps> {
@@ -31,7 +31,7 @@ export default class Text extends React.Component<TextProps> {
         }
 
         if (Util.isNotNil(props.color)) {
-            className += ` ${props.color}`;
+            className += ` color-${props.color}`;
         }
 
         return (

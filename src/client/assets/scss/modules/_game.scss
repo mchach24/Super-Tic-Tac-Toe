@@ -7,7 +7,7 @@
     align-content: space-between;
     justify-content: space-between;
 
-    flex: 9 0 auto;
+    flex: 8 1 auto;
 
     .row {
         display: flex;
@@ -20,36 +20,37 @@
             align-content: space-between;
             justify-content: space-between;
 
-            flex: 1 0 auto;
-
-            border: 1px solid black;
-            line-height: auto;
-            text-align: center;
-            margin: 10px;
-
-            height: auto;
-            
+            flex: 1 1 auto;            
         }
 
         .square {
-            flex: 1 0 auto;
+            flex: 1 1 1em;
 
-            border: 1px solid black;
-            line-height: 100%;
-            text-align: center;
-            margin: 10px;
-
-            height: auto;
         }
     }
 }
 
-.square::before {
-    content: '';
-    float: left;
-    padding-top: 100%;
+.subboard {
+    border: 1px solid black;
+    line-height: auto;
+    text-align: center;
+
+    height: auto;
+}
+
+.square {
+    border: 1px solid black;
+    text-align: center;
+
+    height: auto;
+
+    &::before {
+        content: '';
+        float: left;
+        padding-top: 100%;
+    }
 }
 
 .sidebar {
-    flex: 1 0 auto;
+    flex: 2 1 auto;
 }

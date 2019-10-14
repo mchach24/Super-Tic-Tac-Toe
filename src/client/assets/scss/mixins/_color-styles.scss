@@ -1,9 +1,12 @@
 
-@mixin colorStyles {
-    @each $colorList in $colors {
-        @each $colorName, $color in map-get($colors, $theme) {
-            .color-#{$colorName} {
-                background-color: $color;
+@mixin colorStyles($properties...) {
+
+    @each $listName, $colorList in $colors {
+        @each $colorName, $color in $colorList {
+            &.color-#{$colorName} {
+                @each $property in $properties {
+                    #{$property}: $color;
+                }
             }
         }
     }

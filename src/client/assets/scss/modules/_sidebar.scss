@@ -1,0 +1,30 @@
+
+.sidebar {
+    display: flex;
+
+    flex-flow: row wrap;
+
+    .rules {
+        flex: 1 1 auto;
+
+        display: flex;
+        flex-flow: column;
+    }
+
+    .navigation {
+        flex: 1 1 auto;
+
+        display: flex;
+        flex-flow: column;
+        padding: 0;
+        
+        .nav-item {
+            flex: 0 1 auto;
+            margin-bottom: 0.5em;
+
+            .btn {
+                width: 100%;
+            }
+        }
+    }
+}

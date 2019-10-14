@@ -1,13 +1,15 @@
 
 $colors: (
     theme: (
-        primary       : #00BCD4,    
-        dark-primary  : #0097A7,
-        light-primary : #B2EBF2,
-        accent        : #FF9800,
-        text          : #212121,
-        secondary-text: #FFFFFF,
-        divider       : #BDBDBD
+        theme-primary       : #00BCD4,    
+        theme-dark-primary  : #0097A7,
+        theme-light-primary : #B2EBF2,
+        theme-accent        : #FF9800,
+        theme-divider       : #BDBDBD
+    ),
+    text: (
+        text-primary: #212121,
+        text-secondary: #636363,
     ),
     standard: (
         red         : #f44336,
@@ -22,6 +24,8 @@ $colors: (
         orange      : #ff9800,
         brown       : #795548,
         gray        : #9e9e9e,
-        blue-gray   : #607d8b
+        blue-gray   : #607d8b,
+        white       : #FFFFFF,
+        black       : #000000
     )
 );
