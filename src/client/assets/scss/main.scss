@@ -24,6 +24,7 @@ a, button {
 .text {
 
     @include colorStyles(color);
+    margin: 0.5em;
 
     &.large {
         font-size: 2em;
@@ -36,6 +37,11 @@ a, button {
     &.small {
         font-size: 1em;
     }
+}
+
+.icon {
+    @include colorStyles(stroke);
+    fill: transparent;
 }
 
 .btn {

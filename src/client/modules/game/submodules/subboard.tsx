@@ -33,7 +33,7 @@ export default class SubBoard extends React.Component<SubBoardProps> {
 
         const squares = squareIds.map((row, i) =>
             <Row key={ i }>
-                { row.map((id, j) => <Square id={ id } key={ j } />) }
+                { row.map((id, j) => <Square player='X' id={ id } key={ j } />) }
             </Row>
         );
 

@@ -2,6 +2,7 @@
 import * as React from 'react';
 import Icon from 'components/icon/icon';
 import { Icons } from 'components/icon/icons';
+import { Colors } from '@lib/colors';
 
 export default class Chat extends React.Component<{}> {
 
@@ -11,7 +12,9 @@ export default class Chat extends React.Component<{}> {
 
     public render() {
         return (
-            <Icon icon={ Icons.Message } />
+            <div className='chat'>
+                <Icon icon={ Icons.Message } color={ Colors.Standard.Green }/>
+            </div>
         );
     }
 }
