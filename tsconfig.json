@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module":           "commonjs",
+    "moduleResolution": "node",
+    "target":           "ES2018",
+    "sourceMap":        true,
+    "baseUrl":          ".",
+    "outDir":           "dist/",
+    "strict":           true,
+    "noImplicitReturns":true,
+    "noImplicitThis":   true,
+    "removeComments":   true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@client/*":  ["src/client/*"],
+      "@server/*": ["src/server/*"],
+    },
+  },
+  "include": [
+    "src/",
+  ],
+}

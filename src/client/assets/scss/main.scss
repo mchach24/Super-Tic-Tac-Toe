@@ -1,0 +1,51 @@
+@import './constants/_exports';
+@import './mixins/_exports';
+@import './modules/_exports';
+
+html, body {
+    margin: 0 auto;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+a, button {
+    font-family: inherit;
+}
+
+.nav-item {
+    list-style: none;
+}
+
+.text {
+
+    @include colorStyles(color);
+    margin: 0.5em;
+
+    &.large {
+        font-size: 2em;
+    }
+
+    &.medium {
+        font-size: 1.5em;
+    }
+
+    &.small {
+        font-size: 1em;
+    }
+}
+
+.icon {
+    @include colorStyles(stroke);
+    fill: transparent;
+}
+
+.btn {
+    @include colorStyles(background-color, border-color);
+
+    border-radius: 0.25em;
+}

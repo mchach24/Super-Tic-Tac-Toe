@@ -1,0 +1,29 @@
+
+.wrapper {
+    margin: 0;
+
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+#main-wrapper {
+    height: 100%;
+    padding: 0 5em;
+
+    flex-direction: column;
+
+    .header {
+        flex: 1;
+    }
+
+    #game-wrapper {
+        flex: 1 1 auto;
+
+        flex-direction: row;
+
+        @media(max-width: 1080px) {
+            flex-direction: column;
+        }
+    }
+}
