@@ -1,0 +1,13 @@
+
+@mixin colorStyles($properties...) {
+
+    @each $listName, $colorList in $colors {
+        @each $colorName, $color in $colorList {
+            &.color-#{$colorName} {
+                @each $property in $properties {
+                    #{$property}: $color;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+
+.board {
+    margin: 0.5em;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: space-between;
+    justify-content: space-between;
+
+    flex: 8 1 auto;
+
+    .row {
+        display: flex;
+        flex-flow: row;
+
+        .subboard {
+
+            display: flex;
+            flex-flow: column nowrap;
+            align-content: space-between;
+            justify-content: space-between;
+
+            flex: 1 1 auto;            
+        }
+
+        .square {
+            flex: 1 1 1em;
+
+            svg {
+                stroke: black;
+                stroke-width: 5;
+            }
+
+            .mark-O {
+                fill: transparent;
+            }
+        }
+    }
+}
+
+.subboard {
+    border: 1px solid black;
+    line-height: auto;
+    text-align: center;
+
+    height: auto;
+}
+
+.square {
+    border: 1px solid black;
+    text-align: center;
+
+    height: auto;
+
+    &::before {
+        content: '';
+        float: left;
+        padding-top: 100%;
+    }
+}
+
+.sidebar {
+    flex: 2 1 auto;
+}

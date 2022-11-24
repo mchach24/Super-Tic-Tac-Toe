@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl":          ".",
+    "paths": {
+      "@modules/*": ["modules/*"],
+
+      "@web/*":     ["modules/web/*"],
+      "@game/*":    ["modules/game/*"],
+      "@chat/*":    ["modules/chat/*"],
+
+      "@assets/*":    ["assets/*"],
+
+      "@lib/*":       ["lib/*"],
+    },
+    "jsx": "react",
+    "esModuleInterop": true
+  },
+  "include": [
+    "../index.d.ts", "./"
+  ]
+}
