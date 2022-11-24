@@ -109,7 +109,7 @@
     "tslint": "^5.20.0",
     "typescript": "^3.6.4",
     "webpack": "^4.28.3",
-    "webpack-cli": "^3.2.1",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-middleware": "^3.6.0",
     "webpack-dev-server": "^3.2.1"
   }
